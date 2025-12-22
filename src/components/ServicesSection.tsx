@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import cn from "classnames";
 import Card3D from "./3DCard";
 
@@ -49,7 +49,7 @@ const servicesTranslations = {
           "Корпоративные сайты",
           "Чат-боты",
           "Лендинги",
-          "Интеграции с CRM, платёжными и внешними сервисами",
+          "CRM, төлем және сыртқы сервистермен интеграциялар",
         ],
       },
       {
@@ -67,14 +67,14 @@ const servicesTranslations = {
       {
         id: 5,
         title: "Big Data, ML и искусственный интеллект",
-        description: "Внедряем платформы обработки данных, создаём ML-модели и интегрируем ИИ для автоматизации, аналитики и повышения эффективности вашего бизнеса.",
+        description: "Мы внедряем платформы обработки данных, создаём ML-модели и интегрируем AI для автоматизации, аналитики и повышения эффективности вашего бизнеса.",
         items: [
           "Платформы и инфраструктура Big Data",
           "Машинное обучение (ML)",
           "Искусственный интеллект (AI)",
           "Data Engineering и ETL-процессы",
           "Data Governance и безопасность данных",
-          "ИИ-агенты",
+          "AI-агенты",
         ],
       },
     ],
@@ -86,9 +86,9 @@ const servicesTranslations = {
       {
         id: 1,
         title: "Бағдарламалық жасақтаманы орнату және баптау",
-        description: "Біз компанияңыздың міндеттеріне сәйкес бағдарламалық жасақтаманың толық конфигурациясын қамтамасыз етеміз.",
+        description: "Біз компанияңыздың міндеттеріне сәйкес БЖ-дің толық конфигурациясын қамтамасыз етеміз.",
         categories: [
-          "Кеңсе және корпоративтік пакеттер",
+          "Кеңселік және корпоративтік пакеттер",
           "Әзірлеу құралдары: IDE / Dev Tools",
           "Контейнерлеу және DevOps",
           "Жобаларды басқару жүйелері",
@@ -96,8 +96,8 @@ const servicesTranslations = {
           "BI-талдау",
           "Бұлттық серверлер мен қоймалар",
           "Корпоративтік оқыту платформалары",
-          "Дизайн және креатив үшін БЖ",
-          "Корпоративтік коммуникация каналдары",
+          "Дизайн және креативтілік үшін БЖ",
+          "Корпоративтік коммуникация арналары",
           "Үлкен деректерді өңдеу платформалары мен құралдары",
         ],
       },
@@ -158,8 +158,8 @@ const servicesTranslations = {
     services: [
       {
         id: 1,
-        title: "Software Installation and Configuration",
-        description: "We provide comprehensive software configuration according to your company's needs.",
+        title: "Software Installation and Setup",
+        description: "We ensure full software configuration according to your company's needs.",
         categories: [
           "Office and corporate packages",
           "Development tools: IDE / Dev Tools",
@@ -171,18 +171,18 @@ const servicesTranslations = {
           "Corporate training platforms",
           "Design and creative software",
           "Corporate communication channels",
-          "Big data processing platforms and tools",
+          "Big Data processing platforms and tools",
         ],
       },
       {
         id: 2,
-        title: "Integration of IT Solutions into Your Business",
+        title: "IT Solutions Integration into Your Business",
         description: "We select, install and configure software solutions according to your needs.",
         stages: [
           "Analysis of needs and current business processes",
           "Selection of optimal IT solution",
           "Procurement and licensing",
-          "Implementation, configuration and integration",
+          "Implementation, setup and integration",
           "Staff training",
           "Support and maintenance",
         ],
@@ -195,7 +195,7 @@ const servicesTranslations = {
           "Corporate websites",
           "Chatbots",
           "Landing pages",
-          "Integrations with CRM, payment and external services",
+          "CRM, payment and external service integrations",
         ],
       },
       {
@@ -245,137 +245,245 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const t = servicesTranslations[locale as keyof typeof servicesTranslations] || servicesTranslations.ru;
 
+  const toggleService = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
-    <section id="services" className="section-padding bg-white relative" ref={ref}>
+    <section id="services" className="section-padding bg-gradient-to-b from-white to-gray-50 relative" ref={ref}>
       {/* Background effect */}
-      <div className="absolute inset-0 mesh-bg opacity-50" />
-      <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
+      <div className="absolute inset-0 mesh-bg opacity-30" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 text-primary text-sm font-medium mb-6"
+          >
             {t.badge}
-          </span>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          </motion.span>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
+          >
             {t.intro}
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="space-y-6">
-          {t.services.map((service, index) => (
-            <Card3D key={service.id}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass border-2 border-gray-200/50 rounded-3xl p-6 md:p-8 card-hover relative overflow-hidden group"
-              >
-              {/* Gradient background on hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-              />
-              
-              <div className="relative z-10 flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colors[index]} p-[1px] shrink-0`}>
-                      <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
-                        <span className={`text-2xl font-bold bg-gradient-to-br ${colors[index]} bg-clip-text text-transparent`}>
-                          {service.id}
-                        </span>
-                      </div>
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                  </div>
-                  
-                  {service.description && (
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
+        <div className="space-y-4">
+          {t.services.map((service, index) => {
+            const isExpanded = expandedId === service.id;
+            
+            return (
+              <Card3D key={service.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={cn(
+                    "glass border-2 rounded-3xl overflow-hidden transition-all duration-500",
+                    isExpanded 
+                      ? "border-primary/50 shadow-2xl" 
+                      : "border-gray-200/50 shadow-lg hover:shadow-xl"
                   )}
-                  
-                  {/* Bottom gradient line */}
-                  <div
-                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colors[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                  />
-
-                  {service.categories && (
-                    <div className="mt-4">
-                      <p className="text-sm font-semibold text-gray-700 mb-3">Категории лицензий и решений:</p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                        {service.categories.map((category, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-gray-700 text-sm">{category}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {service.stages && (
-                    <div className="mt-4">
-                      <p className="text-sm font-semibold text-gray-700 mb-3">Полный цикл внедрения включает:</p>
-                      <ul className="space-y-2">
-                        {service.stages.map((stage, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-gray-700">{stage}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      {service.note && (
-                        <p className="mt-4 text-gray-600 italic">{service.note}</p>
+                >
+                  {/* Header - Clickable */}
+                  <motion.button
+                    onClick={() => toggleService(service.id)}
+                    className="w-full p-6 md:p-8 text-left flex items-center justify-between gap-4 group relative overflow-hidden"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                  >
+                    {/* Gradient background on hover */}
+                    <div
+                      className={cn(
+                        "absolute inset-0 bg-gradient-to-r transition-opacity duration-500",
+                        colors[index],
+                        isExpanded ? "opacity-10" : "opacity-0 group-hover:opacity-5"
                       )}
+                    />
+                    
+                    <div className="relative z-10 flex items-center gap-4 flex-1">
+                      <div className={cn(
+                        "w-16 h-16 rounded-2xl bg-gradient-to-br p-[2px] shrink-0 transition-all duration-300",
+                        colors[index]
+                      )}>
+                        <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
+                          <span className={cn(
+                            "text-3xl font-bold bg-gradient-to-br bg-clip-text text-transparent transition-all duration-300",
+                            colors[index]
+                          )}>
+                            {service.id}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className={cn(
+                          "text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300",
+                          isExpanded ? "text-primary" : "text-gray-900 group-hover:text-primary"
+                        )}>
+                          {service.title}
+                        </h3>
+                        {service.description && !isExpanded && (
+                          <p className="text-gray-600 mt-2 text-sm md:text-base line-clamp-2">
+                            {service.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  )}
+                    
+                    {/* Expand/Collapse Icon */}
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative z-10 shrink-0"
+                    >
+                      <div className={cn(
+                        "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
+                        isExpanded 
+                          ? "bg-primary text-white" 
+                          : "bg-gray-100 text-gray-600 group-hover:bg-primary group-hover:text-white"
+                      )}>
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </motion.div>
+                  </motion.button>
 
-                  {service.items && (
-                    <div className="mt-4">
-                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {service.items.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  {/* Expandable Content */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-6 border-t border-gray-200/50">
+                          {service.description && (
+                            <motion.p
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.1 }}
+                              className="text-gray-700 leading-relaxed pt-6"
+                            >
+                              {service.description}
+                            </motion.p>
+                          )}
 
-                  {service.services && (
-                    <div className="mt-4">
-                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {service.services.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-              </motion.div>
-            </Card3D>
-          ))}
+                          {service.categories && (
+                            <motion.div
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              className="space-y-3"
+                            >
+                              <p className="text-sm font-semibold text-gray-700">Категории лицензий и решений:</p>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                {service.categories.map((category, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.05 }}
+                                    className="flex items-start gap-2 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
+                                  >
+                                    <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span className="text-gray-700 text-sm">{category}</span>
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {service.stages && (
+                            <motion.div
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              className="space-y-3"
+                            >
+                              <p className="text-sm font-semibold text-gray-700">Полный цикл внедрения включает:</p>
+                              <div className="space-y-2">
+                                {service.stages.map((stage, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.05 }}
+                                    className="flex items-start gap-3 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
+                                  >
+                                    <div className={cn(
+                                      "w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br text-white text-xs font-bold",
+                                      colors[index]
+                                    )}>
+                                      {i + 1}
+                                    </div>
+                                    <span className="text-gray-700 flex-1">{stage}</span>
+                                  </motion.div>
+                                ))}
+                              </div>
+                              {service.note && (
+                                <motion.p
+                                  initial={{ y: -10, opacity: 0 }}
+                                  animate={{ y: 0, opacity: 1 }}
+                                  transition={{ delay: 0.5 }}
+                                  className="mt-4 text-gray-600 italic p-4 rounded-xl bg-primary/5 border border-primary/10"
+                                >
+                                  {service.note}
+                                </motion.p>
+                              )}
+                            </motion.div>
+                          )}
+
+                          {(service.items || service.services) && (
+                            <motion.div
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              className="space-y-3"
+                            >
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {(service.items || service.services || []).map((item, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.2 + i * 0.05 }}
+                                    className="flex items-start gap-3 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
+                                  >
+                                    <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span className="text-gray-700 text-sm">{item}</span>
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </Card3D>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
-
