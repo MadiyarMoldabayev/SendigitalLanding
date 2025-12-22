@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import Card3D from "./3DCard";
 
 interface TeamMember {
   id: number;
@@ -117,13 +118,13 @@ export default function TeamSection({ locale }: TeamSectionProps) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group glass border-2 border-gray-200/50 rounded-3xl overflow-hidden card-hover"
-            >
+            <Card3D key={member.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group glass border-2 border-gray-200/50 rounded-3xl overflow-hidden card-hover"
+              >
               <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
                 <Image
                   src={member.image}
@@ -146,7 +147,8 @@ export default function TeamSection({ locale }: TeamSectionProps) {
                   {getLocalized(member.experience)}
                 </p>
               </div>
-            </motion.div>
+              </motion.div>
+            </Card3D>
           ))}
         </div>
       </div>

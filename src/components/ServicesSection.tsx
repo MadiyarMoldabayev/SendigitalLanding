@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import cn from "classnames";
+import Card3D from "./3DCard";
 
 const servicesTranslations = {
   ru: {
@@ -265,13 +266,13 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
 
         <div className="space-y-6">
           {t.services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass border-2 border-gray-200/50 rounded-3xl p-6 md:p-8 card-hover relative overflow-hidden group"
-            >
+            <Card3D key={service.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="glass border-2 border-gray-200/50 rounded-3xl p-6 md:p-8 card-hover relative overflow-hidden group"
+              >
               {/* Gradient background on hover */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -369,7 +370,8 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
                   )}
                 </div>
               </div>
-            </motion.div>
+              </motion.div>
+            </Card3D>
           ))}
         </div>
       </div>

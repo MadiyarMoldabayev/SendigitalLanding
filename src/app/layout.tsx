@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import SmoothScroll from "@/components/SmoothScroll";
+import CursorEffect from "@/components/CursorEffect";
 
 export const metadata: Metadata = {
   title: "SENDIGITAL - Технологические решения под Ваши потребности",
@@ -24,7 +26,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className="antialiased bg-white">{children}</body>
+      <body className="antialiased bg-white">
+        <SmoothScroll>
+          <CursorEffect />
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

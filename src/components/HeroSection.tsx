@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ParticlesBackground from "./ParticlesBackground";
+import MagneticButton from "./MagneticButton";
 
 const heroTranslations = {
   ru: {
@@ -38,6 +40,9 @@ export default function HeroSection({ locale }: HeroSectionProps) {
       id="hero"
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden mesh-bg"
     >
+      {/* Particles background */}
+      <ParticlesBackground />
+      
       {/* Animated background elements */}
       <div className="absolute inset-0 grid-pattern opacity-30" />
       
@@ -94,9 +99,9 @@ export default function HeroSection({ locale }: HeroSectionProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <a href={`/${locale}#contact`} className="btn-primary text-base">
+          <MagneticButton href={`/${locale}#contact`} className="btn-primary text-base">
             {t.cta}
-          </a>
+          </MagneticButton>
         </motion.div>
       </div>
 

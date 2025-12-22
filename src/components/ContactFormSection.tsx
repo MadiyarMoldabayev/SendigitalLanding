@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 const contactFormTranslations = {
   ru: {
@@ -335,7 +336,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                   </p>
                 )}
               </div>
-              <button
+              <MagneticButton
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50"
@@ -381,7 +382,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                     </svg>
                   </>
                 )}
-              </button>
+              </MagneticButton>
             </form>
           )}
         </motion.div>
