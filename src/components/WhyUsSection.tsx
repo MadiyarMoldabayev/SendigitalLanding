@@ -82,8 +82,10 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
   const t = whyUsTranslations[locale as keyof typeof whyUsTranslations] || whyUsTranslations.ru;
 
   return (
-    <section id="whyus" className="section-padding bg-gray-50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
+    <section id="whyus" className="section-padding bg-gray-50 relative" ref={ref}>
+      {/* Background effect */}
+      <div className="absolute inset-0 mesh-bg opacity-30" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -105,14 +107,26 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border-2 border-gray-200 rounded-2xl p-6 card-hover"
+              className="glass border-2 border-gray-200/50 rounded-3xl p-6 card-hover relative overflow-hidden group"
             >
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${colors[index]} flex items-center justify-center text-white mb-4`}>
-                {icons[index]}
+              {/* Gradient background on hover */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+              />
+              
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colors[index]} p-[1px] mb-4 relative z-10`}>
+                <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center text-primary">
+                  {icons[index]}
+                </div>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors relative z-10">
                 {item}
               </h3>
+              
+              {/* Bottom gradient line */}
+              <div
+                className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colors[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              />
             </motion.div>
           ))}
         </div>

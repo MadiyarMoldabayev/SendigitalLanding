@@ -36,13 +36,27 @@ export default function HeroSection({ locale }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-b from-white to-gray-50"
+      className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden mesh-bg"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl" />
-      </div>
+      {/* Animated background elements */}
+      <div className="absolute inset-0 grid-pattern opacity-30" />
+      
+      {/* Floating orbs */}
+      <motion.div
+        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[20%] left-[10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
+      />
+      <motion.div
+        animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-[20%] right-[10%] w-80 h-80 bg-secondary/10 rounded-full blur-[100px]"
+      />
+      <motion.div
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[40%] right-[30%] w-64 h-64 bg-accent/8 rounded-full blur-[80px]"
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0 text-center">
         <motion.h1
@@ -60,7 +74,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto mb-6 leading-relaxed"
+          className="text-lg md:text-xl lg:text-2xl text-gray-700 max-w-4xl mx-auto mb-6 leading-relaxed"
         >
           {t.subtitle1}
         </motion.p>
@@ -69,7 +83,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-base md:text-lg lg:text-xl text-gray-500 max-w-3xl mx-auto mb-12 leading-relaxed"
+          className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed"
         >
           {t.subtitle2}
         </motion.p>
@@ -96,7 +110,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center pt-2"
+          className="w-6 h-10 border-2 border-gray-300/50 rounded-full flex justify-center pt-2 backdrop-blur-sm bg-white/50"
         >
           <motion.div
             animate={{ opacity: [1, 0], y: [0, 10] }}

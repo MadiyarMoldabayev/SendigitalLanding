@@ -186,8 +186,10 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
   };
 
   return (
-    <section id="contact" className="section-padding bg-gray-50" ref={ref}>
-      <div className="max-w-4xl mx-auto px-4 md:px-8 xl:px-0">
+    <section id="contact" className="section-padding bg-gray-50 relative" ref={ref}>
+      {/* Background effect */}
+      <div className="absolute inset-0 mesh-bg opacity-30" />
+      <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -209,7 +211,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white border-2 border-gray-200 rounded-2xl p-8 md:p-10"
+          className="glass border-2 border-gray-200/50 rounded-3xl p-8 md:p-10"
         >
           {isSubmitted ? (
             <div className="text-center py-12">
@@ -243,7 +245,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                     required
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     placeholder={t.namePlaceholder}
                   />
                 </div>
@@ -256,7 +258,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                     required
                     value={formState.phone}
                     onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     placeholder={t.phonePlaceholder}
                   />
                 </div>
@@ -270,7 +272,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                   required
                   value={formState.email}
                   onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                   placeholder={t.emailPlaceholder}
                 />
               </div>
@@ -282,7 +284,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                   required
                   value={formState.service}
                   onChange={(e) => setFormState({ ...formState, service: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                 >
                   <option value="">{t.servicePlaceholder}</option>
                   {t.services.map((service) => (
@@ -300,7 +302,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                   rows={4}
                   value={formState.comment}
                   onChange={(e) => setFormState({ ...formState, comment: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
                   placeholder={t.commentPlaceholder}
                 />
               </div>
@@ -325,7 +327,7 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                   type="file"
                   multiple
                   onChange={handleFileChange}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90"
+                  className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-gray-300/50 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary/90"
                 />
                 {formState.files.length > 0 && (
                   <p className="mt-2 text-sm text-gray-500">

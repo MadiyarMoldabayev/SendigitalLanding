@@ -94,8 +94,10 @@ export default function TeamSection({ locale }: TeamSectionProps) {
   };
 
   return (
-    <section id="team" className="section-padding bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
+    <section id="team" className="section-padding bg-white relative" ref={ref}>
+      {/* Background effect */}
+      <div className="absolute inset-0 mesh-bg opacity-30" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -120,7 +122,7 @@ export default function TeamSection({ locale }: TeamSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group bg-white border-2 border-gray-200 rounded-2xl overflow-hidden card-hover"
+              className="group glass border-2 border-gray-200/50 rounded-3xl overflow-hidden card-hover"
             >
               <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
                 <Image

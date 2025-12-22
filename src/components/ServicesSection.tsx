@@ -245,7 +245,9 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
   const t = servicesTranslations[locale as keyof typeof servicesTranslations] || servicesTranslations.ru;
 
   return (
-    <section id="services" className="section-padding bg-white" ref={ref}>
+    <section id="services" className="section-padding bg-white relative" ref={ref}>
+      {/* Background effect */}
+      <div className="absolute inset-0 mesh-bg opacity-50" />
       <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -268,15 +270,24 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border-2 border-gray-200 rounded-2xl p-6 md:p-8 card-hover"
+              className="glass border-2 border-gray-200/50 rounded-3xl p-6 md:p-8 card-hover relative overflow-hidden group"
             >
-              <div className="flex items-start justify-between gap-4">
+              {/* Gradient background on hover */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+              />
+              
+              <div className="relative z-10 flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors[index]} flex items-center justify-center text-white font-bold text-lg shrink-0`}>
-                      {service.id}
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colors[index]} p-[1px] shrink-0`}>
+                      <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
+                        <span className={`text-2xl font-bold bg-gradient-to-br ${colors[index]} bg-clip-text text-transparent`}>
+                          {service.id}
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                       {service.title}
                     </h3>
                   </div>
@@ -286,6 +297,11 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
                       {service.description}
                     </p>
                   )}
+                  
+                  {/* Bottom gradient line */}
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colors[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  />
 
                   {service.categories && (
                     <div className="mt-4">
