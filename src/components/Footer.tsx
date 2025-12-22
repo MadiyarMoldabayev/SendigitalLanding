@@ -13,8 +13,6 @@ const footerTranslations = {
     address: "Казахстан, г. Астана",
     email: "info@sengroup.one",
     phone: "+7 (778) 625-19-24",
-    bin: "БИН",
-    binValue: "Укажите БИН",
     privacy: "Политика конфиденциальности",
     terms: "Публичная оферта",
     security: "Безопасность",
@@ -35,8 +33,6 @@ const footerTranslations = {
     address: "Қазақстан, Астана қ.",
     email: "info@sengroup.one",
     phone: "+7 (778) 625-19-24",
-    bin: "БСН",
-    binValue: "БСН көрсетіңіз",
     privacy: "Құпиялылық саясаты",
     terms: "Жалпыға бірдей ұсыныс",
     security: "Қауіпсіздік",
@@ -57,8 +53,6 @@ const footerTranslations = {
     address: "Kazakhstan, Astana",
     email: "info@sengroup.one",
     phone: "+7 (778) 625-19-24",
-    bin: "BIN",
-    binValue: "Specify BIN",
     privacy: "Privacy Policy",
     terms: "Public Offer",
     security: "Security",
@@ -164,9 +158,6 @@ export default function Footer({ locale }: FooterProps) {
                 >
                   {t.phone}
                 </a>
-              </li>
-              <li>
-                <p className="text-gray-400 text-sm">{t.bin}: {t.binValue}</p>
               </li>
             </ul>
           </div>
