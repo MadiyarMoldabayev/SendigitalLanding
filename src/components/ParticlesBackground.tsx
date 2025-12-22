@@ -9,6 +9,12 @@ export default function ParticlesBackground() {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
+    // Lazy load particles only on desktop
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      return; // Skip particles on mobile for better performance
+    }
+
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => {
@@ -27,12 +33,11 @@ export default function ParticlesBackground() {
           value: "transparent",
         },
       },
-      fpsLimit: 120,
+      fpsLimit: 60, // Reduced from 120
       interactivity: {
         events: {
           onClick: {
-            enable: true,
-            mode: "push" as const,
+            enable: false, // Disabled for performance
           },
           onHover: {
             enable: true,
@@ -43,12 +48,9 @@ export default function ParticlesBackground() {
           },
         },
         modes: {
-          push: {
-            quantity: 4,
-          },
           repulse: {
-            distance: 100,
-            duration: 0.4,
+            distance: 80, // Reduced
+            duration: 0.3, // Reduced
           },
         },
       },
@@ -58,10 +60,10 @@ export default function ParticlesBackground() {
         },
         links: {
           color: "#2563EB",
-          distance: 150,
+          distance: 120, // Reduced
           enable: true,
-          opacity: 0.2,
-          width: 1,
+          opacity: 0.15, // Reduced
+          width: 0.5, // Reduced
         },
         move: {
           enable: true,
@@ -69,26 +71,26 @@ export default function ParticlesBackground() {
             default: "bounce" as const,
           },
           random: false,
-          speed: 1,
+          speed: 0.8, // Reduced
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 50,
+          value: 30, // Reduced from 50
         },
         opacity: {
-          value: 0.3,
+          value: 0.25, // Reduced
         },
         shape: {
           type: "circle" as const,
         },
         size: {
-          value: { min: 1, max: 3 },
+          value: { min: 1, max: 2.5 }, // Reduced
         },
       },
-      detectRetina: true,
+      detectRetina: false, // Disabled for performance
     }),
     []
   );

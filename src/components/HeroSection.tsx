@@ -1,8 +1,10 @@
 "use client";
 
+import { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
-import ParticlesBackground from "./ParticlesBackground";
-import MagneticButton from "./MagneticButton";
+
+// Lazy load particles
+const ParticlesBackground = lazy(() => import("./ParticlesBackground"));
 
 const heroTranslations = {
   ru: {
@@ -40,27 +42,29 @@ export default function HeroSection({ locale }: HeroSectionProps) {
       id="hero"
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden mesh-bg"
     >
-      {/* Particles background */}
-      <ParticlesBackground />
+      {/* Particles background - lazy loaded */}
+      <Suspense fallback={null}>
+        <ParticlesBackground />
+      </Suspense>
       
       {/* Animated background elements */}
       <div className="absolute inset-0 grid-pattern opacity-30" />
       
-      {/* Floating orbs */}
+      {/* Floating orbs - optimized */}
       <motion.div
         animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[20%] left-[10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
+        className="absolute top-[20%] left-[10%] w-96 h-96 bg-primary/10 rounded-full blur-[120px] will-change-transform"
       />
       <motion.div
         animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[20%] right-[10%] w-80 h-80 bg-secondary/10 rounded-full blur-[100px]"
+        className="absolute bottom-[20%] right-[10%] w-80 h-80 bg-secondary/10 rounded-full blur-[100px] will-change-transform"
       />
       <motion.div
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[40%] right-[30%] w-64 h-64 bg-accent/8 rounded-full blur-[80px]"
+        className="absolute top-[40%] right-[30%] w-64 h-64 bg-accent/8 rounded-full blur-[80px] will-change-transform"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0 text-center">
@@ -99,9 +103,9 @@ export default function HeroSection({ locale }: HeroSectionProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <MagneticButton href={`/${locale}#contact`} className="btn-primary text-base">
+          <a href={`/${locale}#contact`} className="btn-primary text-base">
             {t.cta}
-          </MagneticButton>
+          </a>
         </motion.div>
       </div>
 
@@ -127,4 +131,3 @@ export default function HeroSection({ locale }: HeroSectionProps) {
     </section>
   );
 }
-
