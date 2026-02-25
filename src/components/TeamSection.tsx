@@ -14,21 +14,13 @@ interface TeamMember {
   experience: { ru: string; kk: string; en: string };
 }
 
-// Team without Gulsina (id 7)
-const teamMembers: TeamMember[] = [
-  {
-    id: 1,
-    image: "/team/new-1.png",
-    name: { en: "Batima Mukina", kk: "Батима Мукина", ru: "Батима Мукина" },
-    role: { en: "Chief Executive Officer", kk: "Бас директор", ru: "Генеральный директор" },
-    expertise: { en: "Expert in audit, compliance and corporate law with 20+ years of cross-sectoral experience in public, quasi-public, NGO and business sectors, creating and implementing scalable fintech and AI solutions based on trust", kk: "Аудит, комплаенс және корпоративтік құқық бойынша маман, мемлекеттік, квазимемлекеттік, ҮЕҰ және бизнес секторларында 20+ жылдық сектораралық тәжірибесі бар, сенімге негізделген масштабталатын финтех және AI шешімдерін құрастырады және енгізеді", ru: "Эксперт по аудиту, комплаенсу и корпоративному праву с 20+ лет межсекторного опыта в государственном, квазигоссекторе, НПО и бизнесе, создаю и внедряю масштабируемые финтех и AI-решения, основанные на доверии" },
-    experience: { en: "20+ years of cross-sectoral experience", kk: "20+ жылдық сектораралық тәжірибе", ru: "20+ лет межсекторного опыта" },
-  },
+// Directors — displayed in a top tier
+const directors: TeamMember[] = [
   {
     id: 2,
     image: "/team/new-2.png",
     name: { en: "Aslan Sariev", kk: "Аслан Сариев", ru: "Аслан Сариев" },
-    role: { en: "Chief Operating Officer", kk: "Операциялық директор", ru: "Операционный директор" },
+    role: { en: "Executive Director", kk: "Атқарушы директор", ru: "Исполнительный директор" },
     expertise: { en: "NGO finance, audit, taxation", kk: "ҮЕҰ қаржысы, аудит, салықтар", ru: "Финансы НПО, аудит, налоги" },
     experience: { en: "10+ years of experience in the non-profit sector", kk: "Коммерциялық емес секторда 10 жылдан аса тәжірибе", ru: "+10 лет опыта в некоммерческом секторе" },
   },
@@ -40,6 +32,10 @@ const teamMembers: TeamMember[] = [
     expertise: { en: "Data analytics, full-stack development, DevOps, machine learning", kk: "Деректер аналитикасы, Fullstack әзірлеу, DevOps, машинамен оқыту", ru: "Аналитика данных, Fullstack разработка, DevOps, машинное обучение" },
     experience: { en: "5+ years of implementing IT solutions", kk: "IT шешімдерін енгізу бойынша 5 жылдан аса тәжірибе", ru: "+5 лет внедрения IT-решений" },
   },
+];
+
+// Team members — displayed below directors
+const teamMembers: TeamMember[] = [
   {
     id: 4,
     image: "/team/new-4.png",
@@ -116,13 +112,58 @@ export default function TeamSection({ locale }: TeamSectionProps) {
           </p>
         </motion.div>
 
+        {/* Directors — top tier */}
+        <div className="flex flex-col sm:flex-row justify-center gap-8 mb-12">
+          {directors.map((member, index) => (
+            <div key={member.id} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)]">
+              <Card3D>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group glass border-2 border-primary/30 rounded-3xl overflow-hidden card-hover"
+                >
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <Image
+                    src={member.image}
+                    alt={getLocalized(member.name)}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {getLocalized(member.name)}
+                  </h3>
+                  <p className="text-primary font-semibold mb-3">
+                    {getLocalized(member.role)}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                    {getLocalized(member.expertise)}
+                  </p>
+                  <p className="text-accent text-xs font-medium">
+                    {getLocalized(member.experience)}
+                  </p>
+                </div>
+                </motion.div>
+              </Card3D>
+            </div>
+          ))}
+        </div>
+
+        {/* Connecting line */}
+        <div className="hidden lg:flex justify-center mb-12">
+          <div className="w-px h-8 bg-gradient-to-b from-primary/40 to-gray-300" />
+        </div>
+
+        {/* Team members — lower tier */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <Card3D key={member.id}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                 className="group glass border-2 border-gray-200/50 rounded-3xl overflow-hidden card-hover"
               >
               <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
