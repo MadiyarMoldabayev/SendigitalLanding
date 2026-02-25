@@ -12,7 +12,7 @@ const footerTranslations = {
     legal: "Правовая информация",
     address: "Казахстан, г. Астана",
     email: "info@sengroup.one",
-    phone: "+7 (778) 625-19-24",
+    phone: "+7 (708) 021-18-48",
     privacy: "Политика конфиденциальности",
     terms: "Публичная оферта",
     security: "Безопасность",
@@ -32,7 +32,7 @@ const footerTranslations = {
     legal: "Құқықтық ақпарат",
     address: "Қазақстан, Астана қ.",
     email: "info@sengroup.one",
-    phone: "+7 (778) 625-19-24",
+    phone: "+7 (708) 021-18-48",
     privacy: "Құпиялылық саясаты",
     terms: "Жалпыға бірдей ұсыныс",
     security: "Қауіпсіздік",
@@ -52,7 +52,7 @@ const footerTranslations = {
     legal: "Legal Information",
     address: "Kazakhstan, Astana",
     email: "info@sengroup.one",
-    phone: "+7 (778) 625-19-24",
+    phone: "+7 (708) 021-18-48",
     privacy: "Privacy Policy",
     terms: "Public Offer",
     security: "Security",
@@ -95,7 +95,7 @@ export default function Footer({ locale }: FooterProps) {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://wa.me/77786251924"
+                href="https://wa.me/77080211848"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors"
