@@ -170,9 +170,9 @@ export default function Footer({ locale }: FooterProps) {
               © {currentYear} SENDIGITAL. {t.copyright}
             </p>
             <div className="flex items-center gap-6">
-              <Link href={`/${locale}/privacy`} className="text-sm text-gray-400 hover:text-white transition-colors">
+              <a href="https://docs.google.com/document/d/1E8AGKI5g6dEEmFK_Qyht7iJ7zK8pfL_d/export?format=pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">
                 {t.privacy}
-              </Link>
+              </a>
               <Link href={`/${locale}/terms`} className="text-sm text-gray-400 hover:text-white transition-colors">
                 {t.terms}
               </Link>
