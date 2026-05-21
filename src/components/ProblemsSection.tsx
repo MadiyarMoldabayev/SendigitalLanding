@@ -133,22 +133,19 @@ export default function ProblemsSection({ locale }: ProblemsSectionProps) {
   const t = problemsTranslations[locale as keyof typeof problemsTranslations] || problemsTranslations.ru;
 
   return (
-    <section id="problems" className="section-padding bg-gray-900 relative overflow-hidden" ref={ref}>
-      {/* Subtle texture */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
+    <section id="problems" className="section-padding surface-dark relative overflow-hidden" ref={ref}>
+      <div className="dot-grid absolute inset-0" />
+      <div className="aurora w-[700px] h-[700px] rounded-full bg-primary/20 top-[-200px] left-1/2 -translate-x-1/2" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="max-w-4xl mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium mb-6">
-            {t.badge}
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-tight">
+          <div className="eyebrow eyebrow-dark mb-6">{t.badge}</div>
+          <h2 className="display-sm text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
             {t.title}
           </h2>
         </motion.div>
@@ -160,9 +157,9 @@ export default function ProblemsSection({ locale }: ProblemsSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.07 }}
-              className="group bg-gray-800/60 backdrop-blur border border-white/10 rounded-2xl p-6 hover:border-primary/40 hover:bg-gray-800/80 transition-all duration-300"
+              className="card-dark p-6 group"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary mb-5 group-hover:bg-primary/30 transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300">
                 {icons[index]}
               </div>
               <h3 className="text-lg md:text-xl font-semibold text-white mb-2">

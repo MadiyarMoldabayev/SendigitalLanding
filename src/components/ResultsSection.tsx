@@ -138,15 +138,13 @@ export default function ResultsSection({ locale }: ResultsSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="max-w-4xl mb-14"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
-            {t.badge}
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <div className="eyebrow mb-6" style={{ color: "#059669" }}>{t.badge}</div>
+          <h2 className="display-sm text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             {t.title}
           </h2>
-          <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+          <p className="text-gray-600 text-lg md:text-xl leading-relaxed">
             {t.subtitle}
           </p>
         </motion.div>

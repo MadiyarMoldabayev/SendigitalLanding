@@ -340,21 +340,17 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="max-w-4xl mb-16"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 text-primary text-sm font-medium mb-6"
-          >
-            {t.badge}
-          </motion.span>
+          <div className="eyebrow mb-6">{t.badge}</div>
+          <h2 className="display-sm text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5">
+            {locale === "ru" ? "Услуги, которые закрывают весь IT-цикл" : locale === "kk" ? "Бүкіл IT-циклді жабатын қызметтер" : "Services that cover the entire IT cycle"}
+          </h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-gray-600 leading-relaxed"
           >
             {t.intro}
           </motion.p>

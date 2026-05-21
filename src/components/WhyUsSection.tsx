@@ -145,12 +145,10 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="max-w-4xl mb-16"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            {t.badge}
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <div className="eyebrow mb-6">{t.badge}</div>
+          <h2 className="display-sm text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900">
             {t.title}
           </h2>
         </motion.div>
