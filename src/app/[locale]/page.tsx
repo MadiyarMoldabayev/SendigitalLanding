@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import ProblemsSection from "@/components/ProblemsSection";
 import ServicesSection from "@/components/ServicesSection";
+import ResultsSection from "@/components/ResultsSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import TeamSection from "@/components/TeamSection";
 import ContactFormSection from "@/components/ContactFormSection";
@@ -21,7 +23,9 @@ export default function LocalePage({ params }: PageProps) {
     <main className="min-h-screen bg-white">
       <Header locale={locale} />
       <HeroSection locale={locale} />
+      <ProblemsSection locale={locale} />
       <ServicesSection locale={locale} />
+      <ResultsSection locale={locale} />
       <WhyUsSection locale={locale} />
       <TeamSection locale={locale} />
       <ContactFormSection locale={locale} />

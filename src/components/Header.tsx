@@ -9,21 +9,27 @@ import Link from "next/link";
 const navLinks = {
   ru: [
     { name: "Главная", href: "#hero" },
+    { name: "Задачи", href: "#problems" },
     { name: "Услуги", href: "#services" },
+    { name: "Результаты", href: "#results" },
     { name: "Почему мы", href: "#whyus" },
     { name: "Команда", href: "#team" },
     { name: "Контакты", href: "#contact" },
   ],
   kk: [
     { name: "Басты бет", href: "#hero" },
+    { name: "Мәселелер", href: "#problems" },
     { name: "Қызметтер", href: "#services" },
+    { name: "Нәтижелер", href: "#results" },
     { name: "Неге біз", href: "#whyus" },
     { name: "Команда", href: "#team" },
     { name: "Байланыс", href: "#contact" },
   ],
   en: [
     { name: "Home", href: "#hero" },
+    { name: "Problems", href: "#problems" },
     { name: "Services", href: "#services" },
+    { name: "Results", href: "#results" },
     { name: "Why Us", href: "#whyus" },
     { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" },

@@ -10,23 +10,41 @@ const heroTranslations = {
   ru: {
     title: "Технологические решения",
     titleHighlight: "под Ваши потребности",
-    subtitle1: "Лицензирование, внедрение, поддержка и цифровая инфраструктура — всё для устойчивой работы ваших систем.",
-    subtitle2: "Мы рядом там, где важны качество, точность и надежная реализация.",
+    subtitle1: "Закрываем весь цикл цифровизации: лицензирование, внедрение, разработка, ML/AI и поддержка 24/7.",
+    subtitle2: "Снимаем с заказчика все вопросы по внедрению технологий — от выбора стека до обучения команды.",
     cta: "Получить консультацию",
+    stats: [
+      { value: "5+ лет", label: "на рынке IT-решений" },
+      { value: "13+", label: "сертифицированных специалистов" },
+      { value: "1С • ERP • ML/AI", label: "ключевые специализации" },
+      { value: "Госсектор", label: "опыт работы с нацкомпаниями" },
+    ],
   },
   kk: {
     title: "Технологиялық шешімдер",
     titleHighlight: "сіздің қажеттіліктеріңізге",
-    subtitle1: "Лицензиялау, енгізу, қолдау және цифрлық инфрақұрылым — жүйелеріңіздің тұрақты жұмысы үшін бәрі.",
-    subtitle2: "Біз сапа, дәлдік және сенімді орындау маңызды болған жерде тұрмыз.",
+    subtitle1: "Цифрландырудың толық циклін жабамыз: лицензиялау, енгізу, әзірлеу, ML/AI және 24/7 қолдау.",
+    subtitle2: "Технологияларды енгізу бойынша барлық мәселелерді — стекті таңдаудан команданы оқытуға дейін шешеміз.",
     cta: "Кеңес алу",
+    stats: [
+      { value: "5+ жыл", label: "IT-шешімдер нарығында" },
+      { value: "13+", label: "сертификатталған маман" },
+      { value: "1С • ERP • ML/AI", label: "негізгі мамандандыру" },
+      { value: "Мемлекеттік сектор", label: "ұлттық компаниялармен тәжірибе" },
+    ],
   },
   en: {
     title: "Technology Solutions",
     titleHighlight: "for Your Needs",
-    subtitle1: "Licensing, implementation, support and digital infrastructure — everything for stable operation of your systems.",
-    subtitle2: "We are there where quality, accuracy and reliable implementation matter.",
+    subtitle1: "We close the entire digitalisation cycle: licensing, implementation, development, ML/AI and 24/7 support.",
+    subtitle2: "We take all technology-implementation worries off the customer — from stack selection to team training.",
     cta: "Get Consultation",
+    stats: [
+      { value: "5+ years", label: "in the IT solutions market" },
+      { value: "13+", label: "certified specialists" },
+      { value: "1C • ERP • ML/AI", label: "core specialisations" },
+      { value: "Gov sector", label: "experience with national companies" },
+    ],
   },
 };
 
@@ -101,11 +119,33 @@ export default function HeroSection({ locale }: HeroSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
         >
           <a href={`/${locale}#contact`} className="btn-primary text-base">
             {t.cta}
           </a>
+        </motion.div>
+
+        {/* Credentials / stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto"
+        >
+          {t.stats.map((stat, i) => (
+            <div
+              key={i}
+              className="glass border border-gray-200/60 rounded-2xl px-4 py-4 sm:px-5 sm:py-5 text-center"
+            >
+              <div className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 leading-tight mb-1">
+                {stat.value}
+              </div>
+              <div className="text-xs sm:text-sm text-gray-600 leading-snug">
+                {stat.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
 

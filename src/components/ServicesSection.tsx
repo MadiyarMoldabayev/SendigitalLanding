@@ -9,11 +9,17 @@ const servicesTranslations = {
   ru: {
     badge: "Наши услуги",
     intro: "Мы предоставляем широкий спектр IT-решений для организаций, государственных структур и бизнеса:",
+    resultsLabel: "Что вы получаете в результате:",
     services: [
       {
         id: 1,
         title: "Установка и настройка программного обеспечения",
         description: "Мы обеспечиваем полноценную конфигурацию ПО в соответствии с задачами вашей компании.",
+        results: [
+          "Полностью настроенное и легализованное ПО",
+          "Документация и инструкции для пользователей",
+          "Обучение сотрудников и передача знаний",
+        ],
         categories: [
           "Офисные и корпоративные пакеты",
           "Инструменты для разработки: IDE / Dev Tools",
@@ -32,6 +38,11 @@ const servicesTranslations = {
         id: 2,
         title: "Интеграция IT-решений в ваш бизнес",
         description: "Мы подбираем, устанавливаем и настраиваем программные решения под ваши потребности.",
+        results: [
+          "Ускорение типовых операций в 2–3 раза",
+          "Единая среда для бухгалтерии, кадров и продаж",
+          "Прозрачная аналитика и отчётность",
+        ],
         stages: [
           "Анализ потребностей и текущих бизнес-процессов",
           "Подбор оптимального IT-решения",
@@ -45,17 +56,28 @@ const servicesTranslations = {
       {
         id: 3,
         title: "Разработка",
+        description: "Разрабатываем корпоративные продукты с передачей исходного кода и гарантией на работы.",
+        results: [
+          "Готовый продукт с передачей исходного кода",
+          "Гарантия на разработку до 12 месяцев",
+          "Документация и SLA на поддержку",
+        ],
         items: [
-          "Корпоративные сайты",
-          "Чат-боты",
-          "Лендинги",
-          "CRM, төлем және сыртқы сервистермен интеграциялар",
+          "Корпоративные сайты и веб-приложения",
+          "Чат-боты и AI-ассистенты",
+          "Лендинги и продающие страницы",
+          "Интеграции с CRM, платёжными и сторонними сервисами",
         ],
       },
       {
         id: 4,
         title: "Техническая поддержка",
         description: "Мы обеспечиваем стабильную работу ваших цифровых систем 24/7.",
+        results: [
+          "SLA с фиксированным временем реакции",
+          "Регулярные обновления и аудиты безопасности",
+          "Снижение простоев и потерь данных",
+        ],
         services: [
           "Мониторинг работоспособности",
           "Регулярные обновления",
@@ -68,6 +90,11 @@ const servicesTranslations = {
         id: 5,
         title: "Big Data, ML и искусственный интеллект",
         description: "Мы внедряем платформы обработки данных, создаём ML-модели и интегрируем AI для автоматизации, аналитики и повышения эффективности вашего бизнеса.",
+        results: [
+          "Автоматизация рутины и снижение нагрузки на сотрудников",
+          "Прогнозная аналитика для управленческих решений",
+          "AI-агенты и чат-боты в ваших каналах",
+        ],
         items: [
           "Платформы и инфраструктура Big Data",
           "Машинное обучение (ML)",
@@ -82,11 +109,17 @@ const servicesTranslations = {
   kk: {
     badge: "Біздің қызметтер",
     intro: "Біз ұйымдар, мемлекеттік құрылымдар және бизнес үшін IT-шешімдердің кең спектрін ұсынамыз:",
+    resultsLabel: "Нәтижесінде сіз аласыз:",
     services: [
       {
         id: 1,
         title: "Бағдарламалық жасақтаманы орнату және баптау",
         description: "Біз компанияңыздың міндеттеріне сәйкес БЖ-дің толық конфигурациясын қамтамасыз етеміз.",
+        results: [
+          "Толық бапталған және заңды БЖ",
+          "Пайдаланушыларға арналған құжаттама мен нұсқаулар",
+          "Қызметкерлерді оқыту және білімді беру",
+        ],
         categories: [
           "Кеңселік және корпоративтік пакеттер",
           "Әзірлеу құралдары: IDE / Dev Tools",
@@ -105,6 +138,11 @@ const servicesTranslations = {
         id: 2,
         title: "IT-шешімдерді бизнесіңізге интеграциялау",
         description: "Біз сіздің қажеттіліктеріңізге сәйкес бағдарламалық шешімдерді таңдаймыз, орнатамыз және баптаймыз.",
+        results: [
+          "Типтік операцияларды 2–3 есе жылдамдату",
+          "Бухгалтерия, кадрлар мен сатуға арналған бірыңғай орта",
+          "Ашық аналитика және есептілік",
+        ],
         stages: [
           "Қажеттіліктерді және ағымдағы бизнес-процестерді талдау",
           "Оңтайлы IT-шешімді таңдау",
@@ -118,10 +156,16 @@ const servicesTranslations = {
       {
         id: 3,
         title: "Әзірлеу",
+        description: "Бастапқы кодты беру және орындалған жұмыстарға кепілдікпен корпоративтік өнімдерді әзірлейміз.",
+        results: [
+          "Бастапқы коды берілетін дайын өнім",
+          "Әзірлеуге 12 айға дейін кепілдік",
+          "Құжаттама мен қолдау бойынша SLA",
+        ],
         items: [
-          "Корпоративтік сайттар",
-          "Чат-боттар",
-          "Лендингтер",
+          "Корпоративтік сайттар және веб-қосымшалар",
+          "Чат-боттар мен AI-көмекшілер",
+          "Лендингтер мен сатылым беттері",
           "CRM, төлем және сыртқы сервистермен интеграциялар",
         ],
       },
@@ -129,6 +173,11 @@ const servicesTranslations = {
         id: 4,
         title: "Техникалық қолдау",
         description: "Біз сіздің цифрлық жүйелеріңіздің тұрақты жұмысын 24/7 қамтамасыз етеміз.",
+        results: [
+          "Тіркелген ден қою уақытымен SLA",
+          "Тұрақты жаңартулар мен қауіпсіздік аудиттері",
+          "Тоқтап қалу мен деректер жоғалуын азайту",
+        ],
         services: [
           "Жұмысқа қабілеттілікті мониторинг",
           "Тұрақты жаңартулар",
@@ -141,6 +190,11 @@ const servicesTranslations = {
         id: 5,
         title: "Big Data, ML және жасанды интеллект",
         description: "Деректерді өңдеу платформаларын енгіземіз, ML-модельдерін құрамыз және бизнесіңіздің автоматтандыру, талдау және тиімділігін арттыру үшін ЖИ-ді интеграциялаймыз.",
+        results: [
+          "Күнделікті жұмысты автоматтандыру және қызметкерлерге жүктемені азайту",
+          "Басқару шешімдеріне арналған болжамдық аналитика",
+          "Сіздің арналарыңыздағы AI-агенттер мен чат-боттар",
+        ],
         items: [
           "Big Data платформалары мен инфрақұрылымы",
           "Машиналық оқыту (ML)",
@@ -155,11 +209,17 @@ const servicesTranslations = {
   en: {
     badge: "Our Services",
     intro: "We provide a wide range of IT solutions for organizations, government structures and businesses:",
+    resultsLabel: "What you get as a result:",
     services: [
       {
         id: 1,
         title: "Software Installation and Setup",
         description: "We ensure full software configuration according to your company's needs.",
+        results: [
+          "Fully configured and legalised software",
+          "Documentation and user instructions",
+          "Staff training and knowledge handover",
+        ],
         categories: [
           "Office and corporate packages",
           "Development tools: IDE / Dev Tools",
@@ -178,6 +238,11 @@ const servicesTranslations = {
         id: 2,
         title: "IT Solutions Integration into Your Business",
         description: "We select, install and configure software solutions according to your needs.",
+        results: [
+          "Routine operations sped up 2–3×",
+          "A unified environment for accounting, HR and sales",
+          "Transparent analytics and reporting",
+        ],
         stages: [
           "Analysis of needs and current business processes",
           "Selection of optimal IT solution",
@@ -191,10 +256,16 @@ const servicesTranslations = {
       {
         id: 3,
         title: "Development",
+        description: "We build corporate products with source code handover and a warranty on the work delivered.",
+        results: [
+          "A ready product with source code handover",
+          "Up to 12 months warranty on development",
+          "Documentation and a support SLA",
+        ],
         items: [
-          "Corporate websites",
-          "Chatbots",
-          "Landing pages",
+          "Corporate websites and web applications",
+          "Chatbots and AI assistants",
+          "Landing pages and sales pages",
           "CRM, payment and external service integrations",
         ],
       },
@@ -202,6 +273,11 @@ const servicesTranslations = {
         id: 4,
         title: "Technical Support",
         description: "We ensure stable operation of your digital systems 24/7.",
+        results: [
+          "SLA with a fixed response time",
+          "Regular updates and security audits",
+          "Reduced downtime and data loss",
+        ],
         services: [
           "Performance monitoring",
           "Regular updates",
@@ -214,6 +290,11 @@ const servicesTranslations = {
         id: 5,
         title: "Big Data, ML and Artificial Intelligence",
         description: "We implement data processing platforms, create ML models and integrate AI for automation, analytics and improving your business efficiency.",
+        results: [
+          "Routine automation and reduced employee workload",
+          "Predictive analytics for management decisions",
+          "AI agents and chatbots in your channels",
+        ],
         items: [
           "Big Data platforms and infrastructure",
           "Machine Learning (ML)",
@@ -380,6 +461,34 @@ export default function ServicesSection({ locale }: ServicesSectionProps) {
                             >
                               {service.description}
                             </motion.p>
+                          )}
+
+                          {service.results && (
+                            <motion.div
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.15 }}
+                              className={cn(
+                                "rounded-2xl p-5 border-2",
+                                "bg-gradient-to-br from-accent/5 to-primary/5 border-accent/20"
+                              )}
+                            >
+                              <p className="text-sm font-semibold text-accent mb-3">
+                                {t.resultsLabel}
+                              </p>
+                              <div className="space-y-2">
+                                {service.results.map((r, i) => (
+                                  <div key={i} className="flex items-start gap-3">
+                                    <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+                                      <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                      </svg>
+                                    </div>
+                                    <span className="text-gray-800 text-sm leading-relaxed">{r}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </motion.div>
                           )}
 
                           {service.categories && (

@@ -7,38 +7,92 @@ import Card3D from "./3DCard";
 const whyUsTranslations = {
   ru: {
     badge: "Почему выбирают нас",
-    title: "Почему выбирают нас",
+    title: "Чем мы отличаемся от других IT-компаний",
     items: [
-      "Экспертиза в широком спектре IT-решений",
-      "Индивидуальный подход к каждому проекту",
-      "Опыт работы с госорганами и нацкомпаниями",
-      "Официальные партнёры мировых IT-платформ",
-      "Реализуем цифровую трансформацию «под ключ»",
-      "Строгие стандарты безопасности и защиты данных",
+      {
+        title: "Полный стек: 1С, ERP, BI, ML/AI, DevOps",
+        description: "Закрываем весь цикл — от лицензирования до AI-решений. Не отдаём подрядчикам.",
+      },
+      {
+        title: "Прямой доступ к лицензированию ПО",
+        description: "Работаем напрямую с правообладателями — без посредников и накруток.",
+      },
+      {
+        title: "Опыт работы с госорганами и нацкомпаниями",
+        description: "Знаем требования к документообороту, безопасности и закупкам.",
+      },
+      {
+        title: "Команда сертифицированных инженеров",
+        description: "Frontend, Backend, DevOps, ML, Data — все компетенции внутри одной команды.",
+      },
+      {
+        title: "Цифровая трансформация под ключ",
+        description: "От аудита процессов и закупа лицензий до 24/7 поддержки и обучения.",
+      },
+      {
+        title: "Стандарты безопасности и защиты данных",
+        description: "Мониторинг, резервное копирование, контроль доступа, шифрование на всех уровнях.",
+      },
     ],
   },
   kk: {
     badge: "Неге бізді таңдайды",
-    title: "Неге бізді таңдайды",
+    title: "Біз басқа IT-компаниялардан немен ерекшеленеміз",
     items: [
-      "IT-шешімдердің кең спектріндегі эксперттік",
-      "Әрбір жобаға жеке тәсіл",
-      "Мемлекеттік органдар мен ұлттық компаниялармен жұмыс тәжірибесі",
-      "Әлемдік IT-платформалардың ресми серіктестері",
-      "Цифрлық трансформацияны «кілтке дейін» жүзеге асырамыз",
-      "Қауіпсіздік пен деректерді қорғау бойынша қатаң стандарттар",
+      {
+        title: "Толық стек: 1С, ERP, BI, ML/AI, DevOps",
+        description: "Лицензиялаудан AI-шешімдерге дейін барлық циклді жабамыз. Қосалқы мердігерлерге бермейміз.",
+      },
+      {
+        title: "БЖ лицензиялауға тікелей қол жетімділік",
+        description: "Құқық иеленушілермен тікелей жұмыс істейміз — делдалсыз және үстемесіз.",
+      },
+      {
+        title: "Мемлекеттік органдар мен ұлттық компаниялармен жұмыс тәжірибесі",
+        description: "Құжат айналымына, қауіпсіздікке және сатып алуға қойылатын талаптарды білеміз.",
+      },
+      {
+        title: "Сертификатталған инженерлер командасы",
+        description: "Frontend, Backend, DevOps, ML, Data — барлық құзіреттер бір команда ішінде.",
+      },
+      {
+        title: "Цифрлық трансформация кілтке дейін",
+        description: "Процестерді аудиттен лицензияларды сатып алудан 24/7 қолдау мен оқытуға дейін.",
+      },
+      {
+        title: "Қауіпсіздік пен деректерді қорғау стандарттары",
+        description: "Мониторинг, резервтік көшіру, қол жетімділікті бақылау, барлық деңгейде шифрлау.",
+      },
     ],
   },
   en: {
     badge: "Why Choose Us",
-    title: "Why Choose Us",
+    title: "How we differ from other IT companies",
     items: [
-      "Expertise in a wide range of IT solutions",
-      "Individual approach to each project",
-      "Experience working with government agencies and national companies",
-      "Official partners of world IT platforms",
-      "We implement digital transformation 'turnkey'",
-      "Strict standards of security and data protection",
+      {
+        title: "Full stack: 1C, ERP, BI, ML/AI, DevOps",
+        description: "We cover the entire cycle — from licensing to AI solutions. No outsourcing.",
+      },
+      {
+        title: "Direct access to software licensing",
+        description: "We work directly with rights holders — no middlemen or markups.",
+      },
+      {
+        title: "Experience with government and national companies",
+        description: "We know the requirements for document flow, security and procurement.",
+      },
+      {
+        title: "A team of certified engineers",
+        description: "Frontend, Backend, DevOps, ML, Data — all competencies inside one team.",
+      },
+      {
+        title: "Turnkey digital transformation",
+        description: "From process audit and licence procurement to 24/7 support and training.",
+      },
+      {
+        title: "Security and data-protection standards",
+        description: "Monitoring, backups, access control, encryption across all layers.",
+      },
     ],
   },
 };
@@ -108,22 +162,25 @@ export default function WhyUsSection({ locale }: WhyUsSectionProps) {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass border-2 border-gray-200/50 rounded-3xl p-6 card-hover relative overflow-hidden group"
+                className="glass border-2 border-gray-200/50 rounded-3xl p-6 card-hover relative overflow-hidden group h-full"
               >
               {/* Gradient background on hover */}
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${colors[index]} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
               />
-              
+
               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colors[index]} p-[1px] mb-4 relative z-10`}>
                 <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center text-primary">
                   {icons[index]}
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors relative z-10">
-                {item}
+                {item.title}
               </h3>
-              
+              <p className="text-gray-600 text-sm leading-relaxed relative z-10">
+                {item.description}
+              </p>
+
               {/* Bottom gradient line */}
               <div
                 className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${colors[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
