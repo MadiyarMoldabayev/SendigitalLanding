@@ -36,3 +36,6 @@ next-env.d.ts
 
 # netlify
 .netlify
+
+# raw source photos (optimized copies live in public/team)
+/NewPhotos
