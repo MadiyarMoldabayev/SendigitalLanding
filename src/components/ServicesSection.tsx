@@ -1,320 +1,55 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import cn from "classnames";
-import Card3D from "./3DCard";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const servicesTranslations = {
   ru: {
-    badge: "Наши услуги",
-    intro: "Мы предоставляем широкий спектр IT-решений для организаций, государственных структур и бизнеса:",
-    resultsLabel: "Что вы получаете в результате:",
+    eyebrow: "Услуги",
+    titleStart: "Закрываем весь",
+    titleItalic: "цифровой цикл",
+    intro: "От лицензирования и настройки ПО до Big Data, ML и AI-агентов. Один партнёр — без подрядчиков и накруток.",
+    more: "Подробнее",
     services: [
-      {
-        id: 1,
-        title: "Установка и настройка программного обеспечения",
-        description: "Мы обеспечиваем полноценную конфигурацию ПО в соответствии с задачами вашей компании.",
-        results: [
-          "Полностью настроенное и легализованное ПО",
-          "Документация и инструкции для пользователей",
-          "Обучение сотрудников и передача знаний",
-        ],
-        categories: [
-          "Офисные и корпоративные пакеты",
-          "Инструменты для разработки: IDE / Dev Tools",
-          "Контейнеризация и DevOps",
-          "Системы управления проектами",
-          "CRM / ERP",
-          "BI-аналитика",
-          "Облачные серверы и хранилища",
-          "Платформы для корпоративного обучения",
-          "ПО для дизайна и креатива",
-          "Каналы корпоративных коммуникаций",
-          "Платформы и инструменты обработки больших данных",
-        ],
-      },
-      {
-        id: 2,
-        title: "Интеграция IT-решений в ваш бизнес",
-        description: "Мы подбираем, устанавливаем и настраиваем программные решения под ваши потребности.",
-        results: [
-          "Ускорение типовых операций в 2–3 раза",
-          "Единая среда для бухгалтерии, кадров и продаж",
-          "Прозрачная аналитика и отчётность",
-        ],
-        stages: [
-          "Анализ потребностей и текущих бизнес-процессов",
-          "Подбор оптимального IT-решения",
-          "Закуп и лицензирование",
-          "Внедрение, настройка и интеграция",
-          "Обучение сотрудников",
-          "Сопровождение и поддержка",
-        ],
-        note: "Каждый проект реализуем с учётом специфики вашей компании.",
-      },
-      {
-        id: 3,
-        title: "Разработка",
-        description: "Разрабатываем корпоративные продукты с передачей исходного кода и гарантией на работы.",
-        results: [
-          "Готовый продукт с передачей исходного кода",
-          "Гарантия на разработку до 12 месяцев",
-          "Документация и SLA на поддержку",
-        ],
-        items: [
-          "Корпоративные сайты и веб-приложения",
-          "Чат-боты и AI-ассистенты",
-          "Лендинги и продающие страницы",
-          "Интеграции с CRM, платёжными и сторонними сервисами",
-        ],
-      },
-      {
-        id: 4,
-        title: "Техническая поддержка",
-        description: "Мы обеспечиваем стабильную работу ваших цифровых систем 24/7.",
-        results: [
-          "SLA с фиксированным временем реакции",
-          "Регулярные обновления и аудиты безопасности",
-          "Снижение простоев и потерь данных",
-        ],
-        services: [
-          "Мониторинг работоспособности",
-          "Регулярные обновления",
-          "Поддержка веб-ресурсов",
-          "Быстрое реагирование на инциденты",
-          "Резервное копирование и восстановление",
-        ],
-      },
-      {
-        id: 5,
-        title: "Big Data, ML и искусственный интеллект",
-        description: "Мы внедряем платформы обработки данных, создаём ML-модели и интегрируем AI для автоматизации, аналитики и повышения эффективности вашего бизнеса.",
-        results: [
-          "Автоматизация рутины и снижение нагрузки на сотрудников",
-          "Прогнозная аналитика для управленческих решений",
-          "AI-агенты и чат-боты в ваших каналах",
-        ],
-        items: [
-          "Платформы и инфраструктура Big Data",
-          "Машинное обучение (ML)",
-          "Искусственный интеллект (AI)",
-          "Data Engineering и ETL-процессы",
-          "Data Governance и безопасность данных",
-          "AI-агенты",
-        ],
-      },
+      { n: "01", title: "Установка и настройка ПО", desc: "Полноценная конфигурация программного обеспечения под задачи вашей компании. Лицензирование напрямую от правообладателей — без посредников." },
+      { n: "02", title: "Интеграция IT-решений", desc: "Подбираем и настраиваем системы под ваши процессы. Связываем CRM, ERP, BI и внешние сервисы в единый контур." },
+      { n: "03", title: "Разработка", desc: "Корпоративные продукты с передачей исходного кода и гарантией до 12 месяцев. От MVP за 4–8 недель до SaaS-платформ." },
+      { n: "04", title: "Техническая поддержка", desc: "Стабильная работа цифровых систем 24/7. Мониторинг, инциденты по SLA, регулярные обновления, бэкапы и прозрачные отчёты." },
+      { n: "05", title: "Big Data, ML и AI", desc: "Платформы обработки данных, ML-модели и AI-агенты для автоматизации, аналитики и повышения эффективности бизнеса." },
+      { n: "06", title: "Облако и DevOps", desc: "Облачные архитектуры, CI/CD, мониторинг и disaster recovery. SLA, который выполняется — а не «по возможности»." },
     ],
   },
   kk: {
-    badge: "Біздің қызметтер",
-    intro: "Біз ұйымдар, мемлекеттік құрылымдар және бизнес үшін IT-шешімдердің кең спектрін ұсынамыз:",
-    resultsLabel: "Нәтижесінде сіз аласыз:",
+    eyebrow: "Қызметтер",
+    titleStart: "Бүкіл",
+    titleItalic: "цифрлық циклді",
+    intro: "БЖ лицензиялаудан Big Data, ML және AI-агенттерге дейін. Бір серіктес — қосалқы мердігерсіз және үстемесіз.",
+    more: "Толығырақ",
     services: [
-      {
-        id: 1,
-        title: "Бағдарламалық жасақтаманы орнату және баптау",
-        description: "Біз компанияңыздың міндеттеріне сәйкес БЖ-дің толық конфигурациясын қамтамасыз етеміз.",
-        results: [
-          "Толық бапталған және заңды БЖ",
-          "Пайдаланушыларға арналған құжаттама мен нұсқаулар",
-          "Қызметкерлерді оқыту және білімді беру",
-        ],
-        categories: [
-          "Кеңселік және корпоративтік пакеттер",
-          "Әзірлеу құралдары: IDE / Dev Tools",
-          "Контейнерлеу және DevOps",
-          "Жобаларды басқару жүйелері",
-          "CRM / ERP",
-          "BI-талдау",
-          "Бұлттық серверлер мен қоймалар",
-          "Корпоративтік оқыту платформалары",
-          "Дизайн және креативтілік үшін БЖ",
-          "Корпоративтік коммуникация арналары",
-          "Үлкен деректерді өңдеу платформалары мен құралдары",
-        ],
-      },
-      {
-        id: 2,
-        title: "IT-шешімдерді бизнесіңізге интеграциялау",
-        description: "Біз сіздің қажеттіліктеріңізге сәйкес бағдарламалық шешімдерді таңдаймыз, орнатамыз және баптаймыз.",
-        results: [
-          "Типтік операцияларды 2–3 есе жылдамдату",
-          "Бухгалтерия, кадрлар мен сатуға арналған бірыңғай орта",
-          "Ашық аналитика және есептілік",
-        ],
-        stages: [
-          "Қажеттіліктерді және ағымдағы бизнес-процестерді талдау",
-          "Оңтайлы IT-шешімді таңдау",
-          "Сатып алу және лицензиялау",
-          "Енгізу, баптау және интеграциялау",
-          "Қызметкерлерді оқыту",
-          "Қолдау және қолдау",
-        ],
-        note: "Әрбір жобаны компанияңыздың ерекшелігін ескере отырып жүзеге асырамыз.",
-      },
-      {
-        id: 3,
-        title: "Әзірлеу",
-        description: "Бастапқы кодты беру және орындалған жұмыстарға кепілдікпен корпоративтік өнімдерді әзірлейміз.",
-        results: [
-          "Бастапқы коды берілетін дайын өнім",
-          "Әзірлеуге 12 айға дейін кепілдік",
-          "Құжаттама мен қолдау бойынша SLA",
-        ],
-        items: [
-          "Корпоративтік сайттар және веб-қосымшалар",
-          "Чат-боттар мен AI-көмекшілер",
-          "Лендингтер мен сатылым беттері",
-          "CRM, төлем және сыртқы сервистермен интеграциялар",
-        ],
-      },
-      {
-        id: 4,
-        title: "Техникалық қолдау",
-        description: "Біз сіздің цифрлық жүйелеріңіздің тұрақты жұмысын 24/7 қамтамасыз етеміз.",
-        results: [
-          "Тіркелген ден қою уақытымен SLA",
-          "Тұрақты жаңартулар мен қауіпсіздік аудиттері",
-          "Тоқтап қалу мен деректер жоғалуын азайту",
-        ],
-        services: [
-          "Жұмысқа қабілеттілікті мониторинг",
-          "Тұрақты жаңартулар",
-          "Веб-ресурстарды қолдау",
-          "Оқиғаларға жылдам реакция",
-          "Резервтік көшіру және қалпына келтіру",
-        ],
-      },
-      {
-        id: 5,
-        title: "Big Data, ML және жасанды интеллект",
-        description: "Деректерді өңдеу платформаларын енгіземіз, ML-модельдерін құрамыз және бизнесіңіздің автоматтандыру, талдау және тиімділігін арттыру үшін ЖИ-ді интеграциялаймыз.",
-        results: [
-          "Күнделікті жұмысты автоматтандыру және қызметкерлерге жүктемені азайту",
-          "Басқару шешімдеріне арналған болжамдық аналитика",
-          "Сіздің арналарыңыздағы AI-агенттер мен чат-боттар",
-        ],
-        items: [
-          "Big Data платформалары мен инфрақұрылымы",
-          "Машиналық оқыту (ML)",
-          "Жасанды интеллект (AI)",
-          "Data Engineering және ETL-процестер",
-          "Data Governance және деректер қауіпсіздігі",
-          "ЖИ-агенттер",
-        ],
-      },
+      { n: "01", title: "БЖ орнату және баптау", desc: "Компанияңыздың міндеттеріне сәйкес бағдарламалық жасақтаманы толық конфигурациялау. Делдалсыз тікелей лицензиялау." },
+      { n: "02", title: "IT-шешімдерді интеграциялау", desc: "Жүйелерді процестеріңізге бейімдейміз және баптаймыз. CRM, ERP, BI және сыртқы сервистерді бір контурға жалғаймыз." },
+      { n: "03", title: "Әзірлеу", desc: "Бастапқы код берілетін және 12 айға кепілдікпен корпоративтік өнімдер. 4–8 аптадағы MVP-ден SaaS-платформаларға дейін." },
+      { n: "04", title: "Техникалық қолдау", desc: "Цифрлық жүйелердің 24/7 тұрақты жұмысы. SLA, мониторинг, тұрақты жаңартулар, резервтік көшіру және ашық есептер." },
+      { n: "05", title: "Big Data, ML және AI", desc: "Деректерді өңдеу платформалары, ML-модельдер және AI-агенттер бизнесті автоматтандыруға, аналитикаға және тиімділікке арналған." },
+      { n: "06", title: "Бұлт және DevOps", desc: "Бұлтты архитектура, CI/CD, мониторинг және disaster recovery. Шынайы орындалатын SLA — «мүмкіндігінше» емес." },
     ],
   },
   en: {
-    badge: "Our Services",
-    intro: "We provide a wide range of IT solutions for organizations, government structures and businesses:",
-    resultsLabel: "What you get as a result:",
+    eyebrow: "Services",
+    titleStart: "We cover the entire",
+    titleItalic: "digital cycle",
+    intro: "From software licensing and setup to Big Data, ML and AI agents. One partner — no subcontractors, no markups.",
+    more: "Learn more",
     services: [
-      {
-        id: 1,
-        title: "Software Installation and Setup",
-        description: "We ensure full software configuration according to your company's needs.",
-        results: [
-          "Fully configured and legalised software",
-          "Documentation and user instructions",
-          "Staff training and knowledge handover",
-        ],
-        categories: [
-          "Office and corporate packages",
-          "Development tools: IDE / Dev Tools",
-          "Containerization and DevOps",
-          "Project management systems",
-          "CRM / ERP",
-          "BI analytics",
-          "Cloud servers and storage",
-          "Corporate training platforms",
-          "Design and creative software",
-          "Corporate communication channels",
-          "Big Data processing platforms and tools",
-        ],
-      },
-      {
-        id: 2,
-        title: "IT Solutions Integration into Your Business",
-        description: "We select, install and configure software solutions according to your needs.",
-        results: [
-          "Routine operations sped up 2–3×",
-          "A unified environment for accounting, HR and sales",
-          "Transparent analytics and reporting",
-        ],
-        stages: [
-          "Analysis of needs and current business processes",
-          "Selection of optimal IT solution",
-          "Procurement and licensing",
-          "Implementation, setup and integration",
-          "Staff training",
-          "Support and maintenance",
-        ],
-        note: "Each project is implemented taking into account the specifics of your company.",
-      },
-      {
-        id: 3,
-        title: "Development",
-        description: "We build corporate products with source code handover and a warranty on the work delivered.",
-        results: [
-          "A ready product with source code handover",
-          "Up to 12 months warranty on development",
-          "Documentation and a support SLA",
-        ],
-        items: [
-          "Corporate websites and web applications",
-          "Chatbots and AI assistants",
-          "Landing pages and sales pages",
-          "CRM, payment and external service integrations",
-        ],
-      },
-      {
-        id: 4,
-        title: "Technical Support",
-        description: "We ensure stable operation of your digital systems 24/7.",
-        results: [
-          "SLA with a fixed response time",
-          "Regular updates and security audits",
-          "Reduced downtime and data loss",
-        ],
-        services: [
-          "Performance monitoring",
-          "Regular updates",
-          "Web resource support",
-          "Rapid incident response",
-          "Backup and recovery",
-        ],
-      },
-      {
-        id: 5,
-        title: "Big Data, ML and Artificial Intelligence",
-        description: "We implement data processing platforms, create ML models and integrate AI for automation, analytics and improving your business efficiency.",
-        results: [
-          "Routine automation and reduced employee workload",
-          "Predictive analytics for management decisions",
-          "AI agents and chatbots in your channels",
-        ],
-        items: [
-          "Big Data platforms and infrastructure",
-          "Machine Learning (ML)",
-          "Artificial Intelligence (AI)",
-          "Data Engineering and ETL processes",
-          "Data Governance and data security",
-          "AI agents",
-        ],
-      },
+      { n: "01", title: "Software installation & setup", desc: "Full configuration of software for your company's tasks. Licensing directly from rights holders — without middlemen." },
+      { n: "02", title: "IT solutions integration", desc: "We pick and configure systems to your processes. We connect CRM, ERP, BI and external services into a single loop." },
+      { n: "03", title: "Development", desc: "Corporate products with source code handover and up to 12 months warranty. From MVP in 4–8 weeks to SaaS platforms." },
+      { n: "04", title: "Technical support", desc: "Stable operation of digital systems 24/7. Monitoring, SLA-bound incidents, regular updates, backups and transparent reports." },
+      { n: "05", title: "Big Data, ML & AI", desc: "Data processing platforms, ML models and AI agents for automation, analytics and business efficiency." },
+      { n: "06", title: "Cloud & DevOps", desc: "Cloud architectures, CI/CD, monitoring and disaster recovery. SLA that's actually met — not «when possible»." },
     ],
   },
 };
-
-const colors = [
-  "from-primary to-blue-600",
-  "from-secondary to-purple-600",
-  "from-accent to-green-600",
-  "from-orange-500 to-amber-600",
-  "from-pink-500 to-rose-600",
-];
 
 interface ServicesSectionProps {
   locale: string;
@@ -323,270 +58,44 @@ interface ServicesSectionProps {
 export default function ServicesSection({ locale }: ServicesSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [expandedId, setExpandedId] = useState<number | null>(null);
   const t = servicesTranslations[locale as keyof typeof servicesTranslations] || servicesTranslations.ru;
 
-  const toggleService = (id: number) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
   return (
-    <section id="services" className="section-padding bg-gradient-to-b from-white to-gray-50 relative" ref={ref}>
-      {/* Background effect */}
-      <div className="absolute inset-0 mesh-bg opacity-30" />
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
+    <section id="services" className="ed-section alt" ref={ref}>
+      <div className="ed-container">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mb-16"
+          transition={{ duration: 0.7 }}
+          className="ed-sec-head"
         >
-          <div className="eyebrow mb-6">{t.badge}</div>
-          <h2 className="display-sm text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5">
-            {locale === "ru" ? "Услуги, которые закрывают весь IT-цикл" : locale === "kk" ? "Бүкіл IT-циклді жабатын қызметтер" : "Services that cover the entire IT cycle"}
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h2>
+            {t.titleStart} <em className="ital-blue not-italic" style={{ fontStyle: "italic" }}>{t.titleItalic}</em>
           </h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-600 leading-relaxed"
-          >
-            {t.intro}
-          </motion.p>
+          <p>{t.intro}</p>
         </motion.div>
 
-        <div className="space-y-4">
-          {t.services.map((service, index) => {
-            const isExpanded = expandedId === service.id;
-            
-            return (
-              <Card3D key={service.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={cn(
-                    "glass border-2 rounded-3xl overflow-hidden transition-all duration-500",
-                    isExpanded 
-                      ? "border-primary/50 shadow-2xl" 
-                      : "border-gray-200/50 shadow-lg hover:shadow-xl"
-                  )}
-                >
-                  {/* Header - Clickable */}
-                  <motion.button
-                    onClick={() => toggleService(service.id)}
-                    className="w-full p-6 md:p-8 text-left flex items-center justify-between gap-4 group relative overflow-hidden"
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                  >
-                    {/* Gradient background on hover */}
-                    <div
-                      className={cn(
-                        "absolute inset-0 bg-gradient-to-r transition-opacity duration-500",
-                        colors[index],
-                        isExpanded ? "opacity-10" : "opacity-0 group-hover:opacity-5"
-                      )}
-                    />
-                    
-                    <div className="relative z-10 flex items-center gap-4 flex-1">
-                      <div className={cn(
-                        "w-16 h-16 rounded-2xl bg-gradient-to-br p-[2px] shrink-0 transition-all duration-300",
-                        colors[index]
-                      )}>
-                        <div className="w-full h-full bg-white rounded-2xl flex items-center justify-center">
-                          <span className={cn(
-                            "text-3xl font-bold bg-gradient-to-br bg-clip-text text-transparent transition-all duration-300",
-                            colors[index]
-                          )}>
-                            {service.id}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className={cn(
-                          "text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300",
-                          isExpanded ? "text-primary" : "text-gray-900 group-hover:text-primary"
-                        )}>
-                          {service.title}
-                        </h3>
-                        {service.description && !isExpanded && (
-                          <p className="text-gray-600 mt-2 text-sm md:text-base line-clamp-2">
-                            {service.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* Expand/Collapse Icon */}
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="relative z-10 shrink-0"
-                    >
-                      <div className={cn(
-                        "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-                        isExpanded 
-                          ? "bg-primary text-white" 
-                          : "bg-gray-100 text-gray-600 group-hover:bg-primary group-hover:text-white"
-                      )}>
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </motion.button>
-
-                  {/* Expandable Content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-6 border-t border-gray-200/50">
-                          {service.description && (
-                            <motion.p
-                              initial={{ y: -10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.1 }}
-                              className="text-gray-700 leading-relaxed pt-6"
-                            >
-                              {service.description}
-                            </motion.p>
-                          )}
-
-                          {service.results && (
-                            <motion.div
-                              initial={{ y: -10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.15 }}
-                              className={cn(
-                                "rounded-2xl p-5 border-2",
-                                "bg-gradient-to-br from-accent/5 to-primary/5 border-accent/20"
-                              )}
-                            >
-                              <p className="text-sm font-semibold text-accent mb-3">
-                                {t.resultsLabel}
-                              </p>
-                              <div className="space-y-2">
-                                {service.results.map((r, i) => (
-                                  <div key={i} className="flex items-start gap-3">
-                                    <div className="w-5 h-5 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5">
-                                      <svg className="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                      </svg>
-                                    </div>
-                                    <span className="text-gray-800 text-sm leading-relaxed">{r}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-
-                          {service.categories && (
-                            <motion.div
-                              initial={{ y: -10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.2 }}
-                              className="space-y-3"
-                            >
-                              <p className="text-sm font-semibold text-gray-700">Категории лицензий и решений:</p>
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                {service.categories.map((category, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ x: -10, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: 0.2 + i * 0.05 }}
-                                    className="flex items-start gap-2 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span className="text-gray-700 text-sm">{category}</span>
-                                  </motion.div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-
-                          {service.stages && (
-                            <motion.div
-                              initial={{ y: -10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.2 }}
-                              className="space-y-3"
-                            >
-                              <p className="text-sm font-semibold text-gray-700">Полный цикл внедрения включает:</p>
-                              <div className="space-y-2">
-                                {service.stages.map((stage, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ x: -10, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: 0.2 + i * 0.05 }}
-                                    className="flex items-start gap-3 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
-                                  >
-                                    <div className={cn(
-                                      "w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-br text-white text-xs font-bold",
-                                      colors[index]
-                                    )}>
-                                      {i + 1}
-                                    </div>
-                                    <span className="text-gray-700 flex-1">{stage}</span>
-                                  </motion.div>
-                                ))}
-                              </div>
-                              {service.note && (
-                                <motion.p
-                                  initial={{ y: -10, opacity: 0 }}
-                                  animate={{ y: 0, opacity: 1 }}
-                                  transition={{ delay: 0.5 }}
-                                  className="mt-4 text-gray-600 italic p-4 rounded-xl bg-primary/5 border border-primary/10"
-                                >
-                                  {service.note}
-                                </motion.p>
-                              )}
-                            </motion.div>
-                          )}
-
-                          {(service.items || service.services) && (
-                            <motion.div
-                              initial={{ y: -10, opacity: 0 }}
-                              animate={{ y: 0, opacity: 1 }}
-                              transition={{ delay: 0.2 }}
-                              className="space-y-3"
-                            >
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {(service.items || service.services || []).map((item, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ x: -10, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: 0.2 + i * 0.05 }}
-                                    className="flex items-start gap-3 p-3 rounded-xl bg-white/50 border border-gray-200/50 hover:border-primary/50 transition-colors"
-                                  >
-                                    <svg className="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span className="text-gray-700 text-sm">{item}</span>
-                                  </motion.div>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </Card3D>
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {t.services.map((s, i) => (
+            <motion.article
+              key={s.n}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className="ed-service"
+            >
+              <div className="num">{s.n}</div>
+              <h3>{s.title}</h3>
+              <p>{s.desc}</p>
+              <a className="more" href={`/${locale}#contact`}>
+                {t.more}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </a>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

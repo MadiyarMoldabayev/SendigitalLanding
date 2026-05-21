@@ -6,38 +6,41 @@ import { motion, useInView } from "framer-motion";
 const ctaTranslations = {
   ru: {
     eyebrow: "Готовы начать",
-    title: "Расскажите о задаче — мы предложим решение за 48 часов",
-    subtitle: "Свяжитесь с нами для бесплатной консультации. Поймём задачу, оценим объём, предложим стек и стоимость без воды.",
-    primary: "Получить консультацию",
-    secondary: "Посмотреть услуги",
-    bullets: [
-      "Бесплатная первичная оценка",
-      "NDA по запросу",
-      "Ответ в течение 48 часов",
+    titleStart: "Расскажите задачу — мы",
+    titleItalic: "предложим решение",
+    titleTail: " за 48 часов.",
+    lead: "Бесплатная первичная оценка. NDA по запросу. Работаем по всему Казахстану и СНГ.",
+    primary: "Обсудить проект",
+    secondary: "Смотреть услуги",
+    contacts: [
+      { v: "+7 (708) 021-18-48", label: "Звонок", href: "tel:+77080211848" },
+      { v: "hello@sendigital.kz", label: "E-mail", href: "mailto:hello@sendigital.kz" },
     ],
   },
   kk: {
     eyebrow: "Бастауға дайын",
-    title: "Тапсырмаңызды айтыңыз — 48 сағат ішінде шешім ұсынамыз",
-    subtitle: "Тегін кеңес алу үшін бізге хабарласыңыз. Міндетті түсінеміз, көлемді бағалаймыз, стек пен құнды артық сөзсіз ұсынамыз.",
-    primary: "Кеңес алу",
+    titleStart: "Тапсырманы айтыңыз — біз",
+    titleItalic: "шешім ұсынамыз",
+    titleTail: " 48 сағатта.",
+    lead: "Тегін бастапқы бағалау. Сұраныс бойынша NDA. Қазақстан мен ТМД бойынша жұмыс істейміз.",
+    primary: "Жобаны талқылау",
     secondary: "Қызметтерді көру",
-    bullets: [
-      "Тегін бастапқы бағалау",
-      "Сұраныс бойынша NDA",
-      "48 сағат ішінде жауап",
+    contacts: [
+      { v: "+7 (708) 021-18-48", label: "Қоңырау", href: "tel:+77080211848" },
+      { v: "hello@sendigital.kz", label: "E-mail", href: "mailto:hello@sendigital.kz" },
     ],
   },
   en: {
     eyebrow: "Ready to start",
-    title: "Tell us the task — we'll come back with a plan in 48 hours",
-    subtitle: "Reach out for a free consultation. We'll grasp the problem, estimate the scope and propose stack and pricing — no fluff.",
-    primary: "Get consultation",
+    titleStart: "Tell us the task — we'll come back with",
+    titleItalic: "a plan",
+    titleTail: " in 48 hours.",
+    lead: "Free initial assessment. NDA on request. We work across Kazakhstan and the CIS.",
+    primary: "Discuss a project",
     secondary: "Explore services",
-    bullets: [
-      "Free initial assessment",
-      "NDA on request",
-      "Reply within 48 hours",
+    contacts: [
+      { v: "+7 (708) 021-18-48", label: "Call", href: "tel:+77080211848" },
+      { v: "hello@sendigital.kz", label: "E-mail", href: "mailto:hello@sendigital.kz" },
     ],
   },
 };
@@ -52,48 +55,65 @@ export default function CTASection({ locale }: CTASectionProps) {
   const t = ctaTranslations[locale as keyof typeof ctaTranslations] || ctaTranslations.ru;
 
   return (
-    <section className="py-12 md:py-20 bg-white relative" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0">
+    <section className="ed-section">
+      <div className="ed-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-[2rem] md:rounded-[3rem] surface-dark px-6 sm:px-10 md:px-16 py-14 md:py-20"
+          className="cta-card"
+          ref={ref}
         >
-          <div className="aurora w-[500px] h-[500px] rounded-full bg-primary/30 top-[-150px] right-[-150px]" />
-          <div className="aurora w-[400px] h-[400px] rounded-full bg-secondary/30 bottom-[-100px] left-[-100px]" style={{ animationDelay: "5s" }} />
-          <div className="dot-grid absolute inset-0 opacity-50" />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
-            <div className="lg:col-span-3">
-              <div className="eyebrow eyebrow-dark mb-5">{t.eyebrow}</div>
-              <h2 className="display-sm text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
-                {t.title}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-14 items-center">
+            <div>
+              <span className="eyebrow eyebrow-on-dark">{t.eyebrow}</span>
+              <h2
+                className="text-white font-semibold mt-4"
+                style={{ fontSize: "clamp(34px, 4vw, 54px)", lineHeight: 1.06, letterSpacing: "-0.024em", textWrap: "balance" }}
+              >
+                {t.titleStart} <em className="not-italic" style={{ fontStyle: "italic", color: "#BDD0FF", fontWeight: 500 }}>{t.titleItalic}</em>{t.titleTail}
               </h2>
-              <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed">
-                {t.subtitle}
+              <p className="mt-5 max-w-[46ch]" style={{ fontSize: 16, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 }}>
+                {t.lead}
               </p>
-            </div>
-
-            <div className="lg:col-span-2 flex flex-col items-stretch gap-4">
-              <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                <a href={`/${locale}#contact`} className="btn-gradient text-center">
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`/${locale}#contact`} className="btn-ed on-photo primary">
                   {t.primary}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
                 </a>
-                <a href={`/${locale}#services`} className="btn-ghost text-center">
+                <a href={`/${locale}#services`} className="btn-ed on-photo">
                   {t.secondary}
                 </a>
               </div>
-              <ul className="mt-2 space-y-2 text-sm text-gray-300">
-                {t.bullets.map((b, i) => (
-                  <li key={i} className="flex items-center gap-2.5">
-                    <svg className="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              {t.contacts.map((c) => (
+                <a
+                  key={c.v}
+                  href={c.href}
+                  className="flex justify-between items-center px-5 py-4 rounded-[14px] transition-all"
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    fontSize: 14.5,
+                    color: "#fff",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                  }}
+                >
+                  <b style={{ fontWeight: 600 }}>{c.v}</b>
+                  <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 500 }}>
+                    {c.label}
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </motion.div>

@@ -1,0 +1,129 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+
+const aboutTranslations = {
+  ru: {
+    eyebrow: "О компании",
+    titleStart: "Команда, которая",
+    titleItalic: "отвечает за результат",
+    titleTail: ".",
+    p1: "SEN Digital — это инженеры, дизайнеры, аналитики и DevOps под одной крышей. Большинство — с профильным образованием в CS, инженерии и экономике.",
+    p2: "Мы берём проект целиком: от аудита и стратегии до разработки, эксплуатации и развития. Исходный код, документация и права остаются у клиента.",
+    floatLabel: "Офис",
+    floatCity: "Астана, Казахстан",
+    stats: [
+      { v: "100", small: "%", k: "передача кода и прав" },
+      { v: "48", small: "ч", k: "срок ответа на заявку" },
+      { v: "3.4", small: "г", k: "средний стаж в команде" },
+    ],
+  },
+  kk: {
+    eyebrow: "Компания туралы",
+    titleStart: "Нәтижеге",
+    titleItalic: "жауап беретін команда",
+    titleTail: ".",
+    p1: "SEN Digital — бір шаңырақ астындағы инженерлер, дизайнерлер, талдаушылар және DevOps. Көпшілігі — CS, инженерия және экономика бойынша білімі бар.",
+    p2: "Жобаны толық аламыз: аудит пен стратегиядан әзірлеу, пайдалану және дамытуға дейін. Бастапқы код, құжаттама және құқықтар клиентте қалады.",
+    floatLabel: "Кеңсе",
+    floatCity: "Астана, Қазақстан",
+    stats: [
+      { v: "100", small: "%", k: "код пен құқықтарды беру" },
+      { v: "48", small: "сағ", k: "өтінімге жауап беру мерзімі" },
+      { v: "3.4", small: "ж", k: "командадағы орташа өтіл" },
+    ],
+  },
+  en: {
+    eyebrow: "About",
+    titleStart: "A team that",
+    titleItalic: "owns the outcome",
+    titleTail: ".",
+    p1: "SEN Digital is engineers, designers, analysts and DevOps under one roof. Most have degrees in CS, engineering and economics.",
+    p2: "We take the project end-to-end: from audit and strategy to delivery, operations and growth. Source code, documentation and rights stay with the client.",
+    floatLabel: "Office",
+    floatCity: "Astana, Kazakhstan",
+    stats: [
+      { v: "100", small: "%", k: "code and rights handover" },
+      { v: "48", small: "h", k: "request response time" },
+      { v: "3.4", small: "y", k: "average tenure in the team" },
+    ],
+  },
+};
+
+interface AboutSectionProps {
+  locale: string;
+}
+
+export default function AboutSection({ locale }: AboutSectionProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const t = aboutTranslations[locale as keyof typeof aboutTranslations] || aboutTranslations.ru;
+
+  return (
+    <section id="about" className="ed-section" ref={ref}>
+      <div className="ed-container">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="relative overflow-hidden rounded-[20px] bg-[#222]"
+            style={{ aspectRatio: "5 / 4" }}
+          >
+            <Image
+              src="/assets/photo-meeting-wide.jpg"
+              alt="SEN Digital team meeting"
+              fill
+              sizes="(max-width: 1100px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div
+              className="absolute left-6 bottom-6 rounded-xl px-[18px] py-[14px]"
+              style={{
+                background: "rgba(255,255,255,0.94)",
+                backdropFilter: "blur(6px)",
+                fontSize: 12.5,
+                color: "var(--ink-2)",
+                fontWeight: 500,
+                letterSpacing: "0.02em",
+                border: "1px solid var(--line)",
+              }}
+            >
+              <b className="text-blue mr-1.5" style={{ fontWeight: 600 }}>{t.floatLabel}</b>
+              {t.floatCity}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <span className="eyebrow">{t.eyebrow}</span>
+            <h2
+              className="font-semibold text-ink mt-4"
+              style={{ fontSize: "clamp(30px, 3.8vw, 48px)", lineHeight: 1.08, letterSpacing: "-0.022em", textWrap: "balance" }}
+            >
+              {t.titleStart} <em className="ital-blue not-italic" style={{ fontStyle: "italic" }}>{t.titleItalic}</em>{t.titleTail}
+            </h2>
+            <p className="mt-5 text-ink-2 max-w-[52ch]" style={{ fontSize: 16, lineHeight: 1.7 }}>{t.p1}</p>
+            <p className="mt-3.5 text-ink-2 max-w-[52ch]" style={{ fontSize: 16, lineHeight: 1.7 }}>{t.p2}</p>
+
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-7 border-t" style={{ borderColor: "var(--line)" }}>
+              {t.stats.map((s, i) => (
+                <div key={i}>
+                  <div className="text-ink font-semibold" style={{ fontSize: 32, letterSpacing: "-0.025em", lineHeight: 1 }}>
+                    {s.v}<small className="ml-0.5 text-blue" style={{ fontSize: 18, fontWeight: 500 }}>{s.small}</small>
+                  </div>
+                  <div className="mt-1.5 text-muted" style={{ fontSize: 13, lineHeight: 1.45 }}>{s.k}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

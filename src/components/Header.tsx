@@ -1,48 +1,37 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import cn from "classnames";
-import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = {
   ru: [
-    { name: "Для кого", href: "#industries" },
     { name: "Услуги", href: "#services" },
+    { name: "О нас", href: "#about" },
     { name: "Процесс", href: "#process" },
-    { name: "Результаты", href: "#results" },
     { name: "Команда", href: "#team" },
     { name: "Контакты", href: "#contact" },
   ],
   kk: [
-    { name: "Кімге", href: "#industries" },
     { name: "Қызметтер", href: "#services" },
+    { name: "Біз туралы", href: "#about" },
     { name: "Процесс", href: "#process" },
-    { name: "Нәтижелер", href: "#results" },
     { name: "Команда", href: "#team" },
     { name: "Байланыс", href: "#contact" },
   ],
   en: [
-    { name: "Who", href: "#industries" },
     { name: "Services", href: "#services" },
+    { name: "About", href: "#about" },
     { name: "Process", href: "#process" },
-    { name: "Results", href: "#results" },
     { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" },
   ],
 };
 
 const headerTranslations = {
-  ru: {
-    contactUs: "Получить консультацию",
-  },
-  kk: {
-    contactUs: "Кеңес алу",
-  },
-  en: {
-    contactUs: "Get Consultation",
-  },
+  ru: { cta: "Обсудить проект" },
+  kk: { cta: "Жобаны талқылау" },
+  en: { cta: "Discuss a project" },
 };
 
 interface HeaderProps {
@@ -50,51 +39,63 @@ interface HeaderProps {
 }
 
 export default function Header({ locale }: HeaderProps) {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const t = headerTranslations[locale as keyof typeof headerTranslations] || headerTranslations.ru;
   const currentNavLinks = navLinks[locale as keyof typeof navLinks] || navLinks.ru;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
-  const getLocalizedPath = (targetLocale: string) => {
-    return `/${targetLocale}`;
-  };
+  const langs: { code: string; label: string }[] = [
+    { code: "ru", label: "RU" },
+    { code: "kk", label: "KZ" },
+    { code: "en", label: "EN" },
+  ];
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "glass shadow-lg py-3" : "bg-white/80 backdrop-blur-sm py-5"
-      )}
+    <nav
+      className="sticky top-0 z-50 border-b"
+      style={{
+        background: "rgba(244,239,228,0.86)",
+        backdropFilter: "saturate(160%) blur(12px)",
+        WebkitBackdropFilter: "saturate(160%) blur(12px)",
+        borderColor: "var(--line)",
+      }}
     >
-      <nav className="max-w-7xl mx-auto px-4 md:px-8 xl:px-0 flex justify-between items-center">
-        <Link href={`/${locale}#hero`} className="flex items-center group">
-          <Image
-            src="/logo.png"
-            alt="SENDIGITAL"
-            width={180}
-            height={50}
-            className="h-10 w-auto group-hover:opacity-80 transition-all duration-300"
-            priority
-          />
+      <div className="ed-container flex items-center justify-between gap-6" style={{ height: 72 }}>
+        <Link href={`/${locale}#hero`} className="flex items-center gap-3" aria-label="SEN Digital">
+          <span
+            className="grid place-items-center"
+            style={{
+              width: 34,
+              height: 34,
+              borderRadius: "50%",
+              background: "var(--ink)",
+              color: "var(--bg)",
+              fontSize: 13,
+              fontWeight: 700,
+            }}
+          >
+            S
+          </span>
+          <span style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em", color: "var(--ink)" }}>
+            <b style={{ fontWeight: 600 }}>SEN</b>
+            <span className="mx-1" style={{ color: "var(--muted)", fontWeight: 400 }}>·</span>
+            <span style={{ fontWeight: 400, color: "var(--ink-2)" }}>Digital</span>
+          </span>
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-10">
+        <ul className="hidden lg:flex gap-8 list-none">
           {currentNavLinks.map((link) => (
             <li key={link.name}>
               <a
                 href={`/${locale}${link.href}`}
-                className="text-gray-700 hover:text-primary transition-colors duration-300 text-sm font-medium"
+                className="text-sm font-medium transition-colors"
+                style={{ color: "var(--ink-2)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--blue)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-2)")}
               >
                 {link.name}
               </a>
@@ -103,79 +104,88 @@ export default function Header({ locale }: HeaderProps) {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
-          <div className="relative group">
-            <button className="flex items-center gap-2 text-gray-700 hover:text-primary transition-colors duration-300 text-sm font-medium px-3 py-2 rounded-lg border border-gray-200 hover:border-primary">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 0112 15.5c1.748 0 3.413-.32 4.926-.904M10 20h4m-4 0a2 2 0 01-2-2v-1a2 2 0 012-2h4a2 2 0 012 2v1a2 2 0 01-2 2m-3-11H9M12 10V3" />
-              </svg>
-              {locale.toUpperCase()}
-            </button>
-            <div className="absolute right-0 top-full mt-2 w-24 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300">
-              <Link href={getLocalizedPath('ru')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">RU</Link>
-              <Link href={getLocalizedPath('kk')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">KZ</Link>
-              <Link href={getLocalizedPath('en')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">EN</Link>
-            </div>
+          <div className="flex" style={{ fontSize: 12, fontWeight: 500, color: "var(--muted)" }}>
+            {langs.map((l) => (
+              <Link
+                key={l.code}
+                href={`/${l.code}`}
+                className="px-2.5 py-1 rounded-md transition-colors"
+                style={
+                  l.code === locale
+                    ? { color: "var(--ink)", background: "rgba(21,24,30,0.06)", letterSpacing: "0.04em" }
+                    : { letterSpacing: "0.04em" }
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
-          <a href={`/${locale}#contact`} className="btn-primary text-sm">
-            {t.contactUs}
+          <a href={`/${locale}#contact`} className="btn-ed primary">
+            {t.cta}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
           </a>
         </div>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 group"
+          className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5"
           aria-label="Menu"
         >
           <span
-            className={cn(
-              "w-6 h-0.5 bg-gray-700 transition-all duration-300",
-              menuOpen && "rotate-45 translate-y-2"
-            )}
+            className={cn("w-6 h-0.5 transition-all duration-300", menuOpen && "rotate-45 translate-y-2")}
+            style={{ background: "var(--ink)" }}
           />
           <span
-            className={cn(
-              "w-6 h-0.5 bg-gray-700 transition-all duration-300",
-              menuOpen && "opacity-0"
-            )}
+            className={cn("w-6 h-0.5 transition-all duration-300", menuOpen && "opacity-0")}
+            style={{ background: "var(--ink)" }}
           />
           <span
-            className={cn(
-              "w-6 h-0.5 bg-gray-700 transition-all duration-300",
-              menuOpen && "-rotate-45 -translate-y-2"
-            )}
+            className={cn("w-6 h-0.5 transition-all duration-300", menuOpen && "-rotate-45 -translate-y-2")}
+            style={{ background: "var(--ink)" }}
           />
         </button>
-      </nav>
+      </div>
 
-      {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={menuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="lg:hidden overflow-hidden bg-white border-t border-gray-200 shadow-lg"
-      >
-        <div className="p-6 flex flex-col gap-4">
-          {currentNavLinks.map((link) => (
-            <a
-              key={link.name}
-              href={`/${locale}${link.href}`}
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-700 hover:text-primary transition-colors duration-300 text-lg font-medium py-2"
-            >
-              {link.name}
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="lg:hidden border-t" style={{ borderColor: "var(--line)", background: "var(--bg)" }}>
+          <div className="ed-container py-6 flex flex-col gap-4">
+            {currentNavLinks.map((link) => (
+              <a
+                key={link.name}
+                href={`/${locale}${link.href}`}
+                onClick={() => setMenuOpen(false)}
+                className="text-base font-medium py-2"
+                style={{ color: "var(--ink-2)" }}
+              >
+                {link.name}
+              </a>
+            ))}
+            <div className="flex gap-2 pt-2">
+              {langs.map((l) => (
+                <Link
+                  key={l.code}
+                  href={`/${l.code}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="px-3 py-1.5 rounded-md text-xs font-medium"
+                  style={
+                    l.code === locale
+                      ? { color: "var(--ink)", background: "rgba(21,24,30,0.06)" }
+                      : { color: "var(--muted)" }
+                  }
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+            <a href={`/${locale}#contact`} onClick={() => setMenuOpen(false)} className="btn-ed primary text-center mt-2">
+              {t.cta}
             </a>
-          ))}
-          <div className="flex flex-col gap-2 mt-4">
-            <Link href={getLocalizedPath('ru')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">RU</Link>
-            <Link href={getLocalizedPath('kk')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">KZ</Link>
-            <Link href={getLocalizedPath('en')} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">EN</Link>
           </div>
-          <a href={`/${locale}#contact`} className="btn-primary text-center mt-4">
-            {t.contactUs}
-          </a>
         </div>
-      </motion.div>
-    </motion.header>
+      )}
+    </nav>
   );
 }
-

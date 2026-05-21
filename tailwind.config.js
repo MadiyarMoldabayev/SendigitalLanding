@@ -12,11 +12,24 @@ module.exports = {
         xs: "375px",
       },
       colors: {
-        primary: "#2563EB", // Blue
-        secondary: "#7C3AED", // Purple
-        accent: "#059669", // Green
-        dark: "#1F2937",
-        light: "#F9FAFB",
+        // Editorial warm palette (per SEN Digital.html spec)
+        bg: "#F4EFE4",
+        "bg-2": "#ECE5D2",
+        paper: "#FFFFFF",
+        ink: "#15181E",
+        "ink-2": "#2D323C",
+        muted: "#6D7280",
+        "muted-2": "#A1A6B0",
+        blue: "#1E40AF",
+        "blue-2": "#2A55D0",
+        "blue-soft": "#DCE5F7",
+        "blue-tint": "#EEF2FB",
+        // legacy aliases (kept so older components don't break)
+        primary: "#1E40AF",
+        secondary: "#7C3AED",
+        accent: "#22A06B",
+        dark: "#15181E",
+        light: "#F4EFE4",
         white: "#FFFFFF",
         gray: {
           50: "#F9FAFB",
@@ -32,7 +45,13 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "Roboto", "Montserrat", "system-ui", "sans-serif"],
+        sans: ["Montserrat", "Inter", "system-ui", "sans-serif"],
+        serif: ["Montserrat", "Inter", "system-ui", "sans-serif"],
+      },
+      borderRadius: {
+        editorial: "20px",
+        "editorial-lg": "24px",
+        "editorial-xl": "28px",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

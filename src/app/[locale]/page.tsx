@@ -1,11 +1,10 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import IndustriesSection from "@/components/IndustriesSection";
-import ProblemsSection from "@/components/ProblemsSection";
+import ClientsBar from "@/components/ClientsBar";
 import ServicesSection from "@/components/ServicesSection";
+import AboutSection from "@/components/AboutSection";
+import PhotoBand from "@/components/PhotoBand";
 import ProcessSection from "@/components/ProcessSection";
-import ResultsSection from "@/components/ResultsSection";
-import WhyUsSection from "@/components/WhyUsSection";
 import TeamSection from "@/components/TeamSection";
 import CTASection from "@/components/CTASection";
 import ContactFormSection from "@/components/ContactFormSection";
@@ -23,15 +22,14 @@ export default function LocalePage({ params }: PageProps) {
   const locale = params.locale;
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
       <Header locale={locale} />
       <HeroSection locale={locale} />
-      <IndustriesSection locale={locale} />
-      <ProblemsSection locale={locale} />
+      <ClientsBar locale={locale} />
       <ServicesSection locale={locale} />
+      <AboutSection locale={locale} />
+      <PhotoBand locale={locale} />
       <ProcessSection locale={locale} />
-      <ResultsSection locale={locale} />
-      <WhyUsSection locale={locale} />
       <TeamSection locale={locale} />
       <CTASection locale={locale} />
       <ContactFormSection locale={locale} />
