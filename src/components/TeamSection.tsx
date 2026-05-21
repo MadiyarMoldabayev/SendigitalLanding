@@ -14,7 +14,19 @@ interface TeamMember {
   experience: { ru: string; kk: string; en: string };
 }
 
-// Directors — displayed in a top tier
+// Founder — displayed at the very top
+const founders: TeamMember[] = [
+  {
+    id: 1,
+    image: "/team/batima.jpg",
+    name: { en: "Batima Mukina", kk: "Батима Мұқина", ru: "Батима Мукина" },
+    role: { en: "General Director and Founder", kk: "Бас директор және негізін қалаушы", ru: "Генеральный директор и основатель" },
+    expertise: { en: "Economics, accounting and audit", kk: "Экономика, есеп және аудит", ru: "Экономика, бухгалтерский учёт и аудит" },
+    experience: { en: "MA in Economics, MA in Acc. & Audit", kk: "Экономика магистрі, Есеп және аудит магистрі", ru: "MA в Economics, MA в Acc. & Audit" },
+  },
+];
+
+// Directors — displayed below the founder
 const directors: TeamMember[] = [
   {
     id: 2,
@@ -55,7 +67,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 6,
     image: "/team/ayana.jpg",
-    name: { en: "Ayana Pupova", kk: "Аяна Пупова", ru: "Аяна Пупова" },
+    name: { en: "Ayana Popova", kk: "Аяна Попова", ru: "Аяна Попова" },
     role: { en: "Product Designer", kk: "Өнім дизайнері", ru: "Дизайнер по продукту" },
     expertise: { en: "Product design, ERP and SaaS systems design", kk: "Өнім дизайны, ERP және SaaS жүйелерін жобалау", ru: "Продуктовый дизайн, проектирование ERP, SaaS систем" },
     experience: { en: "Certified Designer", kk: "Сертификатталған дизайнер", ru: "Сертифицированный дизайнер" },
@@ -94,19 +106,11 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: 11,
-    image: "/team/ibrahim.jpg",
-    name: { en: "Ibrahim Bekturgan", kk: "Ибрахим Бектұрған", ru: "Ибрахим Бектурган" },
+    image: "/team/ibragim.jpg",
+    name: { en: "Ibragim Bekturgan", kk: "Ибрагим Бектұрған", ru: "Ибрагим Бектурган" },
     role: { en: "Software Developer", kk: "Бағдарламалық жасақтама әзірлеушісі", ru: "Разработчик ПО" },
     expertise: { en: "Software development, modern programming practices", kk: "Бағдарламалық жасақтама әзірлеу, заманауи бағдарламалау тәжірибелері", ru: "Разработка ПО, современные практики программирования" },
     experience: { en: "BSc in Computer Science 2026", kk: "Информатика бакалавры 2026", ru: "BSc в Computer Science 2026" },
-  },
-  {
-    id: 12,
-    image: "/team/batima.jpg",
-    name: { en: "Batima Mukina", kk: "Батима Мұқина", ru: "Батима Мукина" },
-    role: { en: "Financial Specialist", kk: "Қаржы маманы", ru: "Финансовый специалист" },
-    expertise: { en: "Economics, accounting and audit", kk: "Экономика, есеп және аудит", ru: "Экономика, бухгалтерский учёт и аудит" },
-    experience: { en: "MA in Economics, MA in Acc. & Audit", kk: "Экономика магистрі, Есеп және аудит магистрі", ru: "MA в Economics, MA в Acc. & Audit" },
   },
   {
     id: 13,
@@ -119,7 +123,7 @@ const teamMembers: TeamMember[] = [
   {
     id: 14,
     image: "/team/gulmira.jpg",
-    name: { en: "Gulmira", kk: "Гүлмира", ru: "Гульмира" },
+    name: { en: "Gulmira Inertbaeva", kk: "Гүлмира Инертбаева", ru: "Гульмира Инертбаева" },
     role: { en: "Accountant", kk: "Бухгалтер", ru: "Бухгалтер" },
     expertise: { en: "Accounting and audit", kk: "Есеп және аудит", ru: "Бухгалтерский учёт и аудит" },
     experience: { en: "BA in Acc. & Audit", kk: "Есеп және аудит бакалавры", ru: "BA в Acc. & Audit" },
@@ -176,7 +180,51 @@ export default function TeamSection({ locale }: TeamSectionProps) {
           </p>
         </motion.div>
 
-        {/* Directors — top tier */}
+        {/* Founder — very top tier */}
+        <div className="flex justify-center mb-12">
+          {founders.map((member) => (
+            <div key={member.id} className="w-full sm:w-[calc(60%-1rem)] lg:w-[calc(33.333%-1rem)] max-w-md">
+              <Card3D>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                  className="group glass border-2 border-accent/50 rounded-3xl overflow-hidden card-hover shadow-xl"
+                >
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <Image
+                    src={member.image}
+                    alt={getLocalized(member.name)}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {getLocalized(member.name)}
+                  </h3>
+                  <p className="text-accent font-semibold mb-3">
+                    {getLocalized(member.role)}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                    {getLocalized(member.expertise)}
+                  </p>
+                  <p className="text-accent text-xs font-medium">
+                    {getLocalized(member.experience)}
+                  </p>
+                </div>
+                </motion.div>
+              </Card3D>
+            </div>
+          ))}
+        </div>
+
+        {/* Connecting line */}
+        <div className="hidden lg:flex justify-center mb-12">
+          <div className="w-px h-8 bg-gradient-to-b from-accent/40 to-primary/40" />
+        </div>
+
+        {/* Directors — middle tier */}
         <div className="flex flex-col sm:flex-row justify-center gap-8 mb-12">
           {directors.map((member, index) => (
             <div key={member.id} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)]">
