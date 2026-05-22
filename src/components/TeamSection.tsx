@@ -237,7 +237,6 @@ export default function TeamSection({ locale }: TeamSectionProps) {
                         <div className="name">{getLocal(founder.name)}</div>
                         <div className="role">{getLocal(founder.role)}</div>
                       </div>
-                      <div className="desc">{getLocal(founder.desc)}</div>
                       <div className="ed">{getLocal(founder.ed)}</div>
                     </div>
                   </motion.article>
@@ -266,7 +265,6 @@ export default function TeamSection({ locale }: TeamSectionProps) {
                         <div className="name">{getLocal(p.name)}</div>
                         <div className="role">{getLocal(p.role)}</div>
                       </div>
-                      <div className="desc">{getLocal(p.desc)}</div>
                       <div className="ed">{getLocal(p.ed)}</div>
                     </div>
                   </motion.article>
