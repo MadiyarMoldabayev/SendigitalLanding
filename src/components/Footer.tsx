@@ -12,7 +12,6 @@ const footerTranslations = {
       { name: "Главная", href: "#hero" },
       { name: "Услуги", href: "#services" },
       { name: "О нас", href: "#about" },
-      { name: "Процесс", href: "#process" },
       { name: "Команда", href: "#team" },
     ],
     services: ["Лицензирование", "Разработка", "Big Data & AI", "Поддержка 24/7", "Облако · DevOps"],
@@ -30,7 +29,6 @@ const footerTranslations = {
       { name: "Басты бет", href: "#hero" },
       { name: "Қызметтер", href: "#services" },
       { name: "Біз туралы", href: "#about" },
-      { name: "Процесс", href: "#process" },
       { name: "Команда", href: "#team" },
     ],
     services: ["Лицензиялау", "Әзірлеу", "Big Data & AI", "24/7 қолдау", "Бұлт · DevOps"],
@@ -148,6 +146,27 @@ export default function Footer({ locale }: FooterProps) {
                     </svg>
                   </span>
                   WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://2gis.kz/astana/firm/70000001112636040"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 text-ink-2 hover:text-blue transition-colors"
+                  style={{ fontSize: 14 }}
+                  aria-label="2GIS"
+                >
+                  <span
+                    className="flex items-center justify-center rounded-full"
+                    style={{ width: 28, height: 28, background: "var(--blue-tint)", color: "var(--blue)" }}
+                  >
+                    <svg className="w-[14px] h-[14px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 11a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 21s7-7.5 7-12a7 7 0 10-14 0c0 4.5 7 12 7 12z" />
+                    </svg>
+                  </span>
+                  2GIS · Астана
                 </a>
               </li>
             </ul>

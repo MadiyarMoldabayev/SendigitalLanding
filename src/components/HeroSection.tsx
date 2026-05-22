@@ -5,57 +5,48 @@ import { motion } from "framer-motion";
 
 const heroTranslations = {
   ru: {
-    eyebrow: "IT-партнёр · Астана",
-    tag: "На связи · ответ за",
-    tagTime: "48 ч",
     title: "Технологии, которые",
     titleItalic: "работают",
     titleTail: "на ваш бизнес.",
-    lead: "SEN Digital — команда инженеров из Астаны. Помогаем бизнесу, корпорациям и государственному сектору ",
-    leadStrong: "запускать и поддерживать",
-    leadTail: " цифровые продукты: от лицензирования до AI и поддержки 24/7.",
+    lead: "SEN Digital — команда разработчиков и аналитиков из Астаны. Помогаем бизнесу, корпорациям и государственному сектору ",
+    leadStrong: "запускать",
+    leadTail: " цифровые продукты: от лицензирования до AI.",
     primary: "Обсудить проект",
     secondary: "Смотреть услуги",
     meta: [
-      { v: "5", small: "+", k: "лет на IT-рынке Казахстана" },
       { v: "13", small: "+", k: "инженеров в команде" },
-      { v: "24/7", small: "", k: "поддержка по SLA" },
+      { v: "48", small: "ч", k: "ответ на заявку" },
+      { v: "100", small: "%", k: "передача кода и прав" },
     ],
   },
   kk: {
-    eyebrow: "IT-серіктес · Астана",
-    tag: "Байланыста · жауап",
-    tagTime: "48 сағат",
     title: "Бизнесіңізге",
     titleItalic: "жұмыс істейтін",
     titleTail: "технологиялар.",
-    lead: "SEN Digital — Астанадағы инженерлер тобы. Бизнеске, корпорацияларға және мемлекеттік секторға ",
-    leadStrong: "цифрлық өнімдерді іске қосуға және қолдауға",
-    leadTail: " көмектесеміз: лицензиялаудан AI және 24/7 қолдауға дейін.",
+    lead: "SEN Digital — Астанадағы әзірлеушілер мен талдаушылар тобы. Бизнеске, корпорацияларға және мемлекеттік секторға ",
+    leadStrong: "цифрлық өнімдерді іске қосуға",
+    leadTail: " көмектесеміз: лицензиялаудан AI-ге дейін.",
     primary: "Жобаны талқылау",
     secondary: "Қызметтерді көру",
     meta: [
-      { v: "5", small: "+", k: "Қазақстан IT нарығындағы жыл" },
       { v: "13", small: "+", k: "командадағы инженерлер" },
-      { v: "24/7", small: "", k: "SLA бойынша қолдау" },
+      { v: "48", small: "сағ", k: "өтінімге жауап" },
+      { v: "100", small: "%", k: "код пен құқықтарды беру" },
     ],
   },
   en: {
-    eyebrow: "IT partner · Astana",
-    tag: "Online · reply within",
-    tagTime: "48 h",
     title: "Technology that",
     titleItalic: "works",
     titleTail: "for your business.",
-    lead: "SEN Digital is a team of engineers from Astana. We help businesses, corporates and the public sector ",
-    leadStrong: "launch and support",
-    leadTail: " digital products: from licensing to AI and 24/7 support.",
+    lead: "SEN Digital is a team of developers and analysts from Astana. We help businesses, corporates and the public sector ",
+    leadStrong: "launch",
+    leadTail: " digital products: from licensing to AI.",
     primary: "Discuss a project",
     secondary: "Explore services",
     meta: [
-      { v: "5", small: "+", k: "years on the Kazakhstan IT market" },
       { v: "13", small: "+", k: "engineers in the team" },
-      { v: "24/7", small: "", k: "support under SLA" },
+      { v: "48", small: "h", k: "response to a request" },
+      { v: "100", small: "%", k: "code and rights handover" },
     ],
   },
 };
@@ -80,20 +71,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
             className="object-cover"
             style={{ objectPosition: "center 30%" }}
           />
-          <div className="relative z-10 h-full flex flex-col justify-between p-8 md:p-12 text-white">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex justify-between items-start gap-6 flex-wrap"
-            >
-              <span className="eyebrow eyebrow-on-dark">{t.eyebrow}</span>
-              <span className="hero-tag">
-                <span className="dot" />
-                {t.tag} <b>&nbsp;{t.tagTime}</b>
-              </span>
-            </motion.div>
-
+          <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 text-white">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -110,7 +88,7 @@ export default function HeroSection({ locale }: HeroSectionProps) {
                   textShadow: "0 2px 30px rgba(0,0,0,.25)",
                 }}
               >
-                {t.title} <em className="ital-on-dark not-italic" style={{ fontStyle: "italic", color: "#BDD0FF", fontWeight: 500 }}>{t.titleItalic}</em> {t.titleTail}
+                {t.title} <em className="not-italic" style={{ fontStyle: "italic", color: "#BDD0FF", fontWeight: 500 }}>{t.titleItalic}</em> {t.titleTail}
               </h1>
               <p
                 className="mt-6 max-w-[56ch]"

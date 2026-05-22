@@ -6,23 +6,20 @@ import Link from "next/link";
 
 const navLinks = {
   ru: [
-    { name: "Услуги", href: "#services" },
     { name: "О нас", href: "#about" },
-    { name: "Процесс", href: "#process" },
+    { name: "Услуги", href: "#services" },
     { name: "Команда", href: "#team" },
     { name: "Контакты", href: "#contact" },
   ],
   kk: [
-    { name: "Қызметтер", href: "#services" },
     { name: "Біз туралы", href: "#about" },
-    { name: "Процесс", href: "#process" },
+    { name: "Қызметтер", href: "#services" },
     { name: "Команда", href: "#team" },
     { name: "Байланыс", href: "#contact" },
   ],
   en: [
-    { name: "Services", href: "#services" },
     { name: "About", href: "#about" },
-    { name: "Process", href: "#process" },
+    { name: "Services", href: "#services" },
     { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" },
   ],

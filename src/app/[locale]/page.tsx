@@ -1,12 +1,12 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ClientsBar from "@/components/ClientsBar";
-import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
+import ServicesSection from "@/components/ServicesSection";
+import TrustedBy from "@/components/TrustedBy";
 import PhotoBand from "@/components/PhotoBand";
-import ProcessSection from "@/components/ProcessSection";
+import CoreValuesSection from "@/components/CoreValuesSection";
 import TeamSection from "@/components/TeamSection";
-import CTASection from "@/components/CTASection";
 import ContactFormSection from "@/components/ContactFormSection";
 import Footer from "@/components/Footer";
 
@@ -26,12 +26,12 @@ export default function LocalePage({ params }: PageProps) {
       <Header locale={locale} />
       <HeroSection locale={locale} />
       <ClientsBar locale={locale} />
-      <ServicesSection locale={locale} />
       <AboutSection locale={locale} />
+      <ServicesSection locale={locale} />
+      <TrustedBy locale={locale} />
       <PhotoBand locale={locale} />
-      <ProcessSection locale={locale} />
+      <CoreValuesSection locale={locale} />
       <TeamSection locale={locale} />
-      <CTASection locale={locale} />
       <ContactFormSection locale={locale} />
       <Footer locale={locale} />
     </main>

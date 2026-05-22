@@ -2,15 +2,15 @@
 
 const clientsTranslations = {
   ru: {
-    label: "Работаем с бизнесом, корпорациями и госсектором",
+    label: "Индустрии",
     names: ["Госсектор", "Нацхолдинги", "Банки · финтех", "Ритейл", "Логистика", "EdTech", "Производство"],
   },
   kk: {
-    label: "Бизнес, корпорациялар және мемлекеттік сектормен жұмыс істейміз",
+    label: "Индустриялар",
     names: ["Мемсектор", "Ұлттық холдингтер", "Банктер · финтех", "Ритейл", "Логистика", "EdTech", "Өндіріс"],
   },
   en: {
-    label: "We work with business, corporates and the public sector",
+    label: "Industries",
     names: ["Public sector", "National holdings", "Banks · fintech", "Retail", "Logistics", "EdTech", "Manufacturing"],
   },
 };

@@ -209,35 +209,70 @@ export default function TeamSection({ locale }: TeamSectionProps) {
           <p>{t.intro}</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {people.map((p, i) => (
-            <motion.article
-              key={p.image}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.04 }}
-              className={`person ${p.lead ? "lead" : ""}`}
-            >
-              <div className="photo">
-                <Image
-                  src={p.image}
-                  alt={getLocal(p.name)}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                  className="object-cover"
-                />
+        {(() => {
+          const founder = people.find((p) => p.lead);
+          const rest = people.filter((p) => !p.lead);
+          return (
+            <>
+              {founder && (
+                <motion.article
+                  key={founder.image}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                  className="person lead mb-10 grid grid-cols-1 md:grid-cols-[minmax(0,280px)_1fr]"
+                >
+                  <div className="photo" style={{ aspectRatio: "1 / 1" }}>
+                    <Image
+                      src={founder.image}
+                      alt={getLocal(founder.name)}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 280px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="body !p-8 md:!p-10 gap-3">
+                    <div>
+                      <div className="name" style={{ fontSize: 22 }}>{getLocal(founder.name)}</div>
+                      <div className="role" style={{ fontSize: 14 }}>{getLocal(founder.role)}</div>
+                    </div>
+                    <div className="desc" style={{ fontSize: 15, lineHeight: 1.65, maxWidth: "56ch" }}>{getLocal(founder.desc)}</div>
+                    <div className="ed">{getLocal(founder.ed)}</div>
+                  </div>
+                </motion.article>
+              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {rest.map((p, i) => (
+                  <motion.article
+                    key={p.image}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: i * 0.04 }}
+                    className="person"
+                  >
+                    <div className="photo">
+                      <Image
+                        src={p.image}
+                        alt={getLocal(p.name)}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="body">
+                      <div>
+                        <div className="name">{getLocal(p.name)}</div>
+                        <div className="role">{getLocal(p.role)}</div>
+                      </div>
+                      <div className="desc">{getLocal(p.desc)}</div>
+                      <div className="ed">{getLocal(p.ed)}</div>
+                    </div>
+                  </motion.article>
+                ))}
               </div>
-              <div className="body">
-                <div>
-                  <div className="name">{getLocal(p.name)}</div>
-                  <div className="role">{getLocal(p.role)}</div>
-                </div>
-                <div className="desc">{getLocal(p.desc)}</div>
-                <div className="ed">{getLocal(p.ed)}</div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+            </>
+          );
+        })()}
       </div>
     </section>
   );

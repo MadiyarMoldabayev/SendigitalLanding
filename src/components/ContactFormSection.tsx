@@ -12,7 +12,7 @@ const contactTranslations = {
       { v: "+7 (708) 021-18-48", label: "Телефон", href: "tel:+77080211848", kind: "phone" as const },
       { v: "+7 (708) 021-18-48", label: "WhatsApp", href: "https://wa.me/77080211848", kind: "whatsapp" as const },
       { v: "info@sengroup.one", label: "E-mail", href: "mailto:info@sengroup.one", kind: "email" as const },
-      { v: "Астана, Казахстан", label: "Офис", href: "#", kind: "office" as const },
+      { v: "Астана, Казахстан", label: "2GIS", href: "https://2gis.kz/astana/firm/70000001112636040", kind: "map" as const },
     ],
     nameLabel: "Имя *",
     namePlaceholder: "Как к вам обращаться",
@@ -38,7 +38,7 @@ const contactTranslations = {
       { v: "+7 (708) 021-18-48", label: "Телефон", href: "tel:+77080211848", kind: "phone" as const },
       { v: "+7 (708) 021-18-48", label: "WhatsApp", href: "https://wa.me/77080211848", kind: "whatsapp" as const },
       { v: "info@sengroup.one", label: "E-mail", href: "mailto:info@sengroup.one", kind: "email" as const },
-      { v: "Астана, Қазақстан", label: "Кеңсе", href: "#", kind: "office" as const },
+      { v: "Астана, Қазақстан", label: "2GIS", href: "https://2gis.kz/astana/firm/70000001112636040", kind: "map" as const },
     ],
     nameLabel: "Аты *",
     namePlaceholder: "Қалай атаймыз",
@@ -64,7 +64,7 @@ const contactTranslations = {
       { v: "+7 (708) 021-18-48", label: "Phone", href: "tel:+77080211848", kind: "phone" as const },
       { v: "+7 (708) 021-18-48", label: "WhatsApp", href: "https://wa.me/77080211848", kind: "whatsapp" as const },
       { v: "info@sengroup.one", label: "E-mail", href: "mailto:info@sengroup.one", kind: "email" as const },
-      { v: "Astana, Kazakhstan", label: "Office", href: "#", kind: "office" as const },
+      { v: "Astana, Kazakhstan", label: "2GIS", href: "https://2gis.kz/astana/firm/70000001112636040", kind: "map" as const },
     ],
     nameLabel: "Name *",
     namePlaceholder: "How should we address you",
@@ -84,7 +84,7 @@ const contactTranslations = {
   },
 };
 
-function ChannelIcon({ kind }: { kind: "phone" | "whatsapp" | "email" | "office" }) {
+function ChannelIcon({ kind }: { kind: "phone" | "whatsapp" | "email" | "office" | "map" }) {
   if (kind === "whatsapp") {
     return (
       <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
@@ -99,7 +99,7 @@ function ChannelIcon({ kind }: { kind: "phone" | "whatsapp" | "email" | "office"
       </svg>
     );
   }
-  if (kind === "office") {
+  if (kind === "office" || kind === "map") {
     return (
       <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 11a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
@@ -178,8 +178,8 @@ export default function ContactFormSection({ locale }: ContactFormSectionProps) 
                 <a
                   key={c.label}
                   href={c.href}
-                  target={c.kind === "whatsapp" ? "_blank" : undefined}
-                  rel={c.kind === "whatsapp" ? "noopener noreferrer" : undefined}
+                  target={c.kind === "whatsapp" || c.kind === "map" ? "_blank" : undefined}
+                  rel={c.kind === "whatsapp" || c.kind === "map" ? "noopener noreferrer" : undefined}
                   className="flex justify-between items-center py-[18px] transition-colors"
                   style={{
                     fontSize: 15,
