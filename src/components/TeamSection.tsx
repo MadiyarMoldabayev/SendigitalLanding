@@ -220,23 +220,26 @@ export default function TeamSection({ locale }: TeamSectionProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6 }}
-                  className="person lead mb-10 grid grid-cols-1 md:grid-cols-[minmax(0,280px)_1fr]"
+                  className="person lead mb-10 flex flex-col sm:flex-row items-stretch gap-0"
                 >
-                  <div className="photo" style={{ aspectRatio: "1 / 1" }}>
+                  <div
+                    className="photo shrink-0 w-[180px] sm:w-[200px] md:w-[220px]"
+                    style={{ aspectRatio: "4 / 5" }}
+                  >
                     <Image
                       src={founder.image}
                       alt={getLocal(founder.name)}
                       fill
-                      sizes="(max-width: 768px) 100vw, 280px"
+                      sizes="220px"
                       className="object-cover"
                     />
                   </div>
-                  <div className="body !p-8 md:!p-10 gap-3">
+                  <div className="body !p-7 md:!p-9 gap-3 flex-1">
                     <div>
-                      <div className="name" style={{ fontSize: 22 }}>{getLocal(founder.name)}</div>
-                      <div className="role" style={{ fontSize: 14 }}>{getLocal(founder.role)}</div>
+                      <div className="name" style={{ fontSize: 20 }}>{getLocal(founder.name)}</div>
+                      <div className="role" style={{ fontSize: 13 }}>{getLocal(founder.role)}</div>
                     </div>
-                    <div className="desc" style={{ fontSize: 15, lineHeight: 1.65, maxWidth: "56ch" }}>{getLocal(founder.desc)}</div>
+                    <div className="desc" style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: "60ch" }}>{getLocal(founder.desc)}</div>
                     <div className="ed">{getLocal(founder.ed)}</div>
                   </div>
                 </motion.article>
