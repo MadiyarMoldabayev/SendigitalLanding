@@ -215,34 +215,33 @@ export default function TeamSection({ locale }: TeamSectionProps) {
           return (
             <>
               {founder && (
-                <motion.article
-                  key={founder.image}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6 }}
-                  className="person lead mb-10 flex flex-col sm:flex-row items-stretch gap-0"
-                >
-                  <div
-                    className="photo shrink-0 w-[180px] sm:w-[200px] md:w-[220px]"
-                    style={{ aspectRatio: "4 / 5" }}
+                <div className="flex justify-center mb-8">
+                  <motion.article
+                    key={founder.image}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="person lead w-full sm:w-1/2 lg:w-1/3 xl:w-1/4"
                   >
-                    <Image
-                      src={founder.image}
-                      alt={getLocal(founder.name)}
-                      fill
-                      sizes="220px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="body !p-7 md:!p-9 gap-3 flex-1">
-                    <div>
-                      <div className="name" style={{ fontSize: 20 }}>{getLocal(founder.name)}</div>
-                      <div className="role" style={{ fontSize: 13 }}>{getLocal(founder.role)}</div>
+                    <div className="photo">
+                      <Image
+                        src={founder.image}
+                        alt={getLocal(founder.name)}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                        className="object-cover"
+                      />
                     </div>
-                    <div className="desc" style={{ fontSize: 14.5, lineHeight: 1.65, maxWidth: "60ch" }}>{getLocal(founder.desc)}</div>
-                    <div className="ed">{getLocal(founder.ed)}</div>
-                  </div>
-                </motion.article>
+                    <div className="body">
+                      <div>
+                        <div className="name">{getLocal(founder.name)}</div>
+                        <div className="role">{getLocal(founder.role)}</div>
+                      </div>
+                      <div className="desc">{getLocal(founder.desc)}</div>
+                      <div className="ed">{getLocal(founder.ed)}</div>
+                    </div>
+                  </motion.article>
+                </div>
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {rest.map((p, i) => (
