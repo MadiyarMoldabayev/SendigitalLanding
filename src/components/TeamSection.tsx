@@ -24,7 +24,11 @@ const people: Person[] = [
       kk: "Экономика, есеп және аудит. Стратегия мен мемлекеттік секторға жауапты.",
       en: "Economics, accounting and audit. Owns strategy and government-sector work.",
     },
-    ed: { ru: "MA · Economics  ·  MA · Acc. & Audit", kk: "MA · Экономика  ·  MA · Есеп және аудит", en: "MA · Economics  ·  MA · Acc. & Audit" },
+    ed: {
+      ru: "BA · Accounting & Econ.  ·  MA · Economics  ·  MA · Acc. & Audit",
+      kk: "BA · Есеп және экон.  ·  MA · Экономика  ·  MA · Есеп және аудит",
+      en: "BA · Accounting & Econ.  ·  MA · Economics  ·  MA · Acc. & Audit",
+    },
   },
   {
     image: "/team/aslan.jpg",
@@ -35,7 +39,11 @@ const people: Person[] = [
       kk: "ҮЕҰ қаржысы, аудит, салықтар. Операциялық басқару және келісімшарт жасау.",
       en: "NGO finance, audit, taxation. Operations and contracting.",
     },
-    ed: { ru: "+10 лет · НКО сектор", kk: "+10 жыл · ҮЕҰ сектор", en: "+10 years · non-profit sector" },
+    ed: {
+      ru: "MA · Econ. & Bus. 2017  ·  BA · Bus. Admin. 2013",
+      kk: "MA · Эконом. және бизнес 2017  ·  BA · Бизнес-әкімш. 2013",
+      en: "MA · Econ. & Bus. 2017  ·  BA · Bus. Admin. 2013",
+    },
   },
   {
     image: "/team/madiyar.jpg",
@@ -46,7 +54,11 @@ const people: Person[] = [
       kk: "Деректер аналитикасы, fullstack, DevOps, ML. Архитектура және техникалық көшбасшылық.",
       en: "Data analytics, fullstack, DevOps, ML. Architecture and technical leadership.",
     },
-    ed: { ru: "+5 лет · IT-внедрения", kk: "+5 жыл · IT-енгізу", en: "+5 years · IT rollouts" },
+    ed: {
+      ru: "MSc · Finance 2025  ·  BSc · Comp. Science 2024",
+      kk: "MSc · Қаржы 2025  ·  BSc · Комп. ғылым 2024",
+      en: "MSc · Finance 2025  ·  BSc · Comp. Science 2024",
+    },
   },
   {
     image: "/team/adil-zhexenov.jpg",
@@ -68,7 +80,11 @@ const people: Person[] = [
       kk: "Өнеркәсіптік ML-шешімдер, RAG жүйелері, NLP. Жоғары жүктемелі бэкендтер.",
       en: "Industrial ML solutions, RAG systems, NLP. High-load backends.",
     },
-    ed: { ru: "MSc · Data Science 2026", kk: "MSc · Data Science 2026", en: "MSc · Data Science 2026" },
+    ed: {
+      ru: "MSc · Data Science 2026  ·  BSc · Comp. Science 2024",
+      kk: "MSc · Data Science 2026  ·  BSc · Комп. ғылым 2024",
+      en: "MSc · Data Science 2026  ·  BSc · Comp. Science 2024",
+    },
   },
   {
     image: "/team/ayana.jpg",
@@ -79,7 +95,7 @@ const people: Person[] = [
       kk: "Өнім дизайны, ERP және SaaS жобалау. SEN дизайн жүйесі.",
       en: "Product design, ERP and SaaS design. SEN design system.",
     },
-    ed: { ru: "Сертифицированный дизайнер", kk: "Сертификатталған дизайнер", en: "Certified Designer" },
+    ed: { ru: "BBA · Предпринимательство", kk: "BBA · Кәсіпкерлік", en: "BBA · Entrepreneurship" },
   },
   {
     image: "/team/anel.jpg",
@@ -112,7 +128,7 @@ const people: Person[] = [
       kk: "CI/CD, инфрақұрылымды автоматтандыру, бұлттық платформалар. SLA және мониторинг.",
       en: "CI/CD, infrastructure automation, cloud platforms. SLA and monitoring.",
     },
-    ed: { ru: "Сертифицированный DevOps", kk: "Сертификатталған DevOps", en: "Certified DevOps" },
+    ed: { ru: "BSc · Audio Engineering", kk: "BSc · Audio Engineering", en: "BSc · Audio Engineering" },
   },
   {
     image: "/team/adil-sultangazy.jpg",
@@ -156,7 +172,7 @@ const people: Person[] = [
       kk: "Есеп және аудит. Жобалар бойынша қаржылық есептілік.",
       en: "Accounting and audit. Project financial reporting.",
     },
-    ed: { ru: "BA · Acc. & Audit", kk: "BA · Acc. & Audit", en: "BA · Acc. & Audit" },
+    ed: { ru: "BA · Accounting & Audit", kk: "BA · Есеп және аудит", en: "BA · Accounting & Audit" },
   },
 ];
 

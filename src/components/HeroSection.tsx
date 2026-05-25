@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+
 const heroTranslations = {
   ru: {
     title: "Технологии, которые",
@@ -13,11 +14,6 @@ const heroTranslations = {
     leadTail: " цифровые продукты: от лицензирования до AI.",
     primary: "Обсудить проект",
     secondary: "Смотреть услуги",
-    meta: [
-      { v: "13", small: "+", k: "инженеров в команде" },
-      { v: "48", small: "ч", k: "ответ на заявку" },
-      { v: "100", small: "%", k: "передача кода и прав" },
-    ],
   },
   kk: {
     title: "Бизнесіңізге",
@@ -28,11 +24,6 @@ const heroTranslations = {
     leadTail: " көмектесеміз: лицензиялаудан AI-ге дейін.",
     primary: "Жобаны талқылау",
     secondary: "Қызметтерді көру",
-    meta: [
-      { v: "13", small: "+", k: "командадағы инженерлер" },
-      { v: "48", small: "сағ", k: "өтінімге жауап" },
-      { v: "100", small: "%", k: "код пен құқықтарды беру" },
-    ],
   },
   en: {
     title: "Technology that",
@@ -43,11 +34,6 @@ const heroTranslations = {
     leadTail: " digital products: from licensing to AI.",
     primary: "Discuss a project",
     secondary: "Explore services",
-    meta: [
-      { v: "13", small: "+", k: "engineers in the team" },
-      { v: "48", small: "h", k: "response to a request" },
-      { v: "100", small: "%", k: "code and rights handover" },
-    ],
   },
 };
 
@@ -116,26 +102,6 @@ export default function HeroSection({ locale }: HeroSectionProps) {
             </motion.div>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 pt-8 border-t"
-          style={{ borderColor: "var(--line)", maxWidth: 760 }}
-        >
-          {t.meta.map((m, i) => (
-            <div key={i}>
-              <div className="font-semibold text-ink" style={{ fontSize: 36, letterSpacing: "-0.025em", lineHeight: 1 }}>
-                {m.v}
-                {m.small && <small className="ml-0.5 text-blue" style={{ fontSize: 20, fontWeight: 500 }}>{m.small}</small>}
-              </div>
-              <div className="mt-2.5 text-muted" style={{ fontSize: 13, lineHeight: 1.5, maxWidth: "24ch" }}>
-                {m.k}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </header>
   );

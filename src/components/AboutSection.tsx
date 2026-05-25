@@ -14,11 +14,6 @@ const aboutTranslations = {
     p2: "Берём проект целиком: аудит, дизайн, разработка и передача. Исходный код, документация и все права остаются у клиента.",
     floatLabel: "Офис",
     floatCity: "Астана, Казахстан",
-    stats: [
-      { v: "100", small: "%", k: "передача кода и прав" },
-      { v: "48", small: "ч", k: "срок ответа на заявку" },
-      { v: "13", small: "+", k: "специалистов в команде" },
-    ],
   },
   kk: {
     eyebrow: "Біз туралы",
@@ -29,11 +24,6 @@ const aboutTranslations = {
     p2: "Жобаны толық аламыз: аудит, дизайн, әзірлеу және беру. Бастапқы код, құжаттама және барлық құқықтар клиентте қалады.",
     floatLabel: "Кеңсе",
     floatCity: "Астана, Қазақстан",
-    stats: [
-      { v: "100", small: "%", k: "код пен құқықтарды беру" },
-      { v: "48", small: "сағ", k: "өтінімге жауап беру мерзімі" },
-      { v: "13", small: "+", k: "командадағы мамандар" },
-    ],
   },
   en: {
     eyebrow: "About",
@@ -44,11 +34,6 @@ const aboutTranslations = {
     p2: "We take the project end-to-end: audit, design, development and handover. Source code, documentation and all rights stay with the client.",
     floatLabel: "Office",
     floatCity: "Astana, Kazakhstan",
-    stats: [
-      { v: "100", small: "%", k: "code and rights handover" },
-      { v: "48", small: "h", k: "request response time" },
-      { v: "13", small: "+", k: "specialists in the team" },
-    ],
   },
 };
 
@@ -110,17 +95,6 @@ export default function AboutSection({ locale }: AboutSectionProps) {
             </h2>
             <p className="mt-5 text-ink-2 max-w-[52ch]" style={{ fontSize: 16, lineHeight: 1.7 }}>{t.p1}</p>
             <p className="mt-3.5 text-ink-2 max-w-[52ch]" style={{ fontSize: 16, lineHeight: 1.7 }}>{t.p2}</p>
-
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-7 border-t" style={{ borderColor: "var(--line)" }}>
-              {t.stats.map((s, i) => (
-                <div key={i}>
-                  <div className="text-ink font-semibold" style={{ fontSize: 32, letterSpacing: "-0.025em", lineHeight: 1 }}>
-                    {s.v}<small className="ml-0.5 text-blue" style={{ fontSize: 18, fontWeight: 500 }}>{s.small}</small>
-                  </div>
-                  <div className="mt-1.5 text-muted" style={{ fontSize: 13, lineHeight: 1.45 }}>{s.k}</div>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>
